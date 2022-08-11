@@ -1,0 +1,54 @@
+.projNav {
+    margin: 5px 0 5px 0;
+    color: black;
+    text-decoration: none;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 50px;
+    font-weight: 900;
+
+    .project {
+        display: flex;
+        justify-content: right;
+        width: 99%;
+        float: right;
+        transition: all 0.3s;
+    }
+
+    :hover {
+        background-color: #EBFF00;
+    }
+}
+
+.postBox {
+    width: 80%;
+    margin: 0 auto;
+    h2 {
+        font-size: 2em;
+    }
+
+    .content {
+        width: 100%;
+        margin: 0 auto;
+        text-align: left;
+
+        .postImages {
+            display: flex;
+            justify-content: start;
+            flex-wrap: wrap;
+
+            img {
+                width: 700px;
+                margin: 15px 0;
+                margin-left: 30px;
+                pointer-events: none;
+                user-select: none;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 290px) and (max-width: 1300px) {
+    .projNav {
+        font-size: 20px;
+    }
+}

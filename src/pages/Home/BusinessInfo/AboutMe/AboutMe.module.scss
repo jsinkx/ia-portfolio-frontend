@@ -1,0 +1,32 @@
+.navAboutMe {
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    :hover {
+        background-color: #EBFF00;
+    }
+
+    .aboutMeElement {
+        display: flex;
+        width: 120px;
+        height: 20px;
+        margin: 15px 0;
+        transition: all 0.4s;
+
+        .arrowIcon {
+            height: 20px;
+            width: 20px;
+            margin-right: 15px;
+            background-color: #EBFF00;
+            background-image: url("../../../../assets/img/icons/arrow-icon.png");
+            background-size: 15px;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            background-size: 15px 15px;
+        }
+    }
+}
+
+    
