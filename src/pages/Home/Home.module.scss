@@ -1,3 +1,5 @@
+@import "../../assets/styles/index.scss";
+
 .backgroundWrap {
     display: grid;
     position: relative; 
@@ -35,7 +37,7 @@
 }
 
 .pTitle {
-    font-family: "Consolas", 'Inconsolata', monospace;
+    font-family: "Consolas", Consolas, 'Inconsolata', monospace;
     color: #ABABAB;
     user-select: none;
 }

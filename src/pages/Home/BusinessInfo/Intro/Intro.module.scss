@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400&display=swap');
+@import "../../../../assets/styles/index.scss";
 
 .introSection {
 
     .pTitle {
-        font-family: "Consolas", 'Inconsolata', monospace;
+        font-family: "Consolas", Consolas, 'Inconsolata', monospace;
         color: #ABABAB;
         user-select: none;
     }

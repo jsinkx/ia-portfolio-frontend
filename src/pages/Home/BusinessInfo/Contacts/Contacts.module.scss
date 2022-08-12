@@ -1,7 +1,9 @@
+@import "../../../../assets/styles/index.scss";
+
 .contactsSection {
 
     .pTitle {
-        font-family: "Consolas", 'Inconsolata', monospace;
+        font-family: "Consolas", Consolas, 'Inconsolata', monospace;
         color: #ABABAB;
         user-select: none;
     }

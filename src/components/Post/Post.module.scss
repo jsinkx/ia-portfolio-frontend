@@ -51,4 +51,16 @@
     .projNav {
         font-size: 20px;
     }
+
+    .content {
+
+        .postImages {
+
+            img {
+                width: 100% !important;
+                border: 1px solid red;
+                margin: 15px auto !important;
+            }
+        }
+    }
 }

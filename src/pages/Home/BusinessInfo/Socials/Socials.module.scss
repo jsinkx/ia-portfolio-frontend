@@ -1,9 +1,11 @@
+@import "../../../../assets/styles/index.scss";
+
 .socialSection {
     margin-top: 210px;
     margin-bottom: 20px;
 
     .pTitle {
-        font-family: "Consolas", 'Inconsolata', monospace;
+        font-family: "Consolas", Consolas, 'Inconsolata', monospace;
         color: #ABABAB;
         user-select: none;
     }

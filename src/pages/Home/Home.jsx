@@ -24,7 +24,6 @@ const Home = () => {
             <div className={classes.backgroundWrap}>
                 <div className={classes.backgroundFirst}></div>
                 <div className={classes.backgroundSecond}>
-                    <img  />
                 </div>
             </div>
             <div className={classes.contentSection}>

@@ -162,7 +162,7 @@ const AddPost = () => {
           onChange={e => setTitle(e.target.value)}
           fullWidth
         />
-        <SimpleMDE className={classes.editor} value={text} onChange={onChange} options={options} />
+        <SimpleMDE className={classes.editor} value={text} onChange={onChange} options={options}/>
         <h2> Добавить изображения </h2>
         <div className={classes.blockAddImages}>
           <input ref={inputAddImgRef} type="file" onChange={handleAddImage} hidden />

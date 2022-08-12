@@ -24,12 +24,9 @@
     width: 100%;
   }
   
-  .tags {
-    margin: 15px 0;
-  }
-  
   .editor {
-    margin: 30px -30px;
+    max-width: 100%;
+    margin: 30px auto;
   
     :global {
       .cm-s-easymde {
@@ -46,7 +43,8 @@
   
   .buttons {
     display: flex;
-  
+    margin-bottom: 30px;
+
     button {
       margin-right: 15px;
     }
