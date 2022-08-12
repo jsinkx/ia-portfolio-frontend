@@ -20,7 +20,7 @@ const AddPost = () => {
   const isAuth  = useSelector(selectIsAuth)
   const [ isloading, setLoading] = React.useState(false)
   const [text, setText] = React.useState('');
-  const [title, setTitle] = React.useState('');
+  const [title, setTitle] = React.useState(''); 
   const [image, setImage] = React.useState('');
   const [images, setImages] = React.useState([])
   const [backgroundImageUrl, setImageBackgroundUrl] = React.useState('')
@@ -130,7 +130,7 @@ const AddPost = () => {
   const bgrImgStyle = {
     width: '100%',
     height: '200px',
-    backgroundImage: (backgroundImageUrl ? `url(${config.adress}${backgroundImageUrl})` : 'none'),
+    backgroundImage: (backgroundImageUrl ? `url(${(process.env.REACT_APP_API_URL || config.adress)}${backgroundImageUrl})` : 'none'),
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     backgroundSize: 'cover',
