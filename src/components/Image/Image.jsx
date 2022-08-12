@@ -17,7 +17,7 @@ const Image = ({
         images.map((imgAdress, index) => {
 
           const styleImg = {
-            backgroundImage: `url(${config.adress}${imgAdress})`,
+            backgroundImage: `url(${(process.env.REACT_APP_API_URL || config.adress)}${imgAdress})`,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             backgroundSize: 'cover',

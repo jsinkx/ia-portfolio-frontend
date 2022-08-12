@@ -5,7 +5,6 @@ import classes from "./Home.module.scss"
 import BusinessInfo from "./BusinessInfo/BusinessInfo"
 import { fetchPosts } from "../../redux/slices/posts"
 import Post from "../../components/Post/Post"
-import config from '../../config.json'
 
 const Home = () => {
     const dispatch = useDispatch();

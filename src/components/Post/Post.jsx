@@ -51,7 +51,7 @@ const Post = ({
                 <div className={classes.postImages}>
                 {images.map((imageAdress) => {
                   return <>
-                      <img src={`${config.adress}${imageAdress}`}/>
+                      <img src={`${(process.env.REACT_APP_API_URL || config.adress)}${imageAdress}`}/>
                   </>
                 })}
               </div>

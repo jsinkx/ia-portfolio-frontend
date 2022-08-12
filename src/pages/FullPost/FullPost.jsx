@@ -32,7 +32,7 @@ const FullPost = () => {
         id={data._id}
         title={data.title}
         images={data.images}
-        backgroundImageUrl={ data.backgroundImageUrl ? `${config.adress}${data.backgroundImageUrl}` : ''}
+        backgroundImageUrl={ data.backgroundImageUrl ? `${(process.env.REACT_APP_API_URL || config.adress)}${data.backgroundImageUrl}` : ''}
         user={data.user}
         isFullPost
       >
