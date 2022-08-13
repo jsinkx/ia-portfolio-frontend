@@ -11,13 +11,9 @@ const BurgerMenu = ({
 }) => {
 
     const [display, setDisplay] = useState(false)
-    const elementsStyle =  {
-        display: (display ? "inline": "none")
-    }
+    const elementsStyle = {display: (display ? "inline": "none")}
 
     const changeWindow = (state) => (setDisplay(state ? false : true))
-
-    console.log(children)
 
     return (
         <>

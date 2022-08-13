@@ -61,3 +61,18 @@ header {
     }
 
 }
+
+@media only screen and (min-width: 290px) and (max-width: 1100px) {
+
+    .headerLogoBox {
+        margin-right: 5px !important; 
+    }
+
+    .NavActionBlock {
+        ul {
+            li {
+                margin: 0 3px !important;
+            }
+        }
+    }
+}
