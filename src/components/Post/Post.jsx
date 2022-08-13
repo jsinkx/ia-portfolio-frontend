@@ -8,7 +8,7 @@ import EditIcon from '@mui/icons-material/Edit';
 
 import { fetchRemovePost } from "../../redux/slices/posts"
 import classes from "./Post.module.scss"
-import config from  "../../config.json"
+import adress from "../../config";
 
 const Post = ({
     id,
@@ -17,6 +17,7 @@ const Post = ({
     backgroundImageUrl,
     images,
     isEditable,
+    isBurger,
     isFullPost
 }) => {
     const dispatch = useDispatch()
@@ -51,7 +52,7 @@ const Post = ({
                 <div className={classes.postImages}>
                 {images.map((imageAdress) => {
                   return <>
-                      <img src={`${(process.env.REACT_APP_API_URL || config.adress)}${imageAdress}`}/>
+                      <img src={`${adress}${imageAdress}`}/>
                   </>
                 })}
               </div>
@@ -61,7 +62,7 @@ const Post = ({
       </>
     ) : (
           <NavLink to={`/posts/${id}`} className={classes.projNav}>
-              <div className={classes.project}>
+              <div className={(isBurger ? classes.projectBgr : classes.project)}>
                   {(isEditable ? (
                     <div className={classes.editButtons}>
                       <NavLink to={`/posts/${id}/edit`}>

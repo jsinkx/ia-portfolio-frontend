@@ -11,8 +11,8 @@ import axios from '../../axios'
 import 'easymde/dist/easymde.min.css';
 import classes from './AddPost.module.scss';
 import { selectIsAuth } from '../../redux/slices/auth';
-import config from '../../config.json'
 import Image from '../../components/Image/Image';
+import adress from '../../config';
 
 const AddPost = () => {
   const { id } = useParams()
@@ -130,7 +130,7 @@ const AddPost = () => {
   const bgrImgStyle = {
     width: '100%',
     height: '200px',
-    backgroundImage: (backgroundImageUrl ? `url(${(process.env.REACT_APP_API_URL || config.adress)}${backgroundImageUrl})` : 'none'),
+    backgroundImage: (backgroundImageUrl ? `url(${adress}${backgroundImageUrl})` : 'none'),
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     backgroundSize: 'cover',

@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 import axios from "../../axios";
 import Post from "../../components/Post/Post";
 import classes from './FullPost.module.scss'
-import config from '../../config.json'
+import adress from "../../config";
 
 const FullPost = () => {
   const [data, setData] = React.useState()
@@ -32,7 +32,7 @@ const FullPost = () => {
         id={data._id}
         title={data.title}
         images={data.images}
-        backgroundImageUrl={ data.backgroundImageUrl ? `${(process.env.REACT_APP_API_URL || config.adress)}${data.backgroundImageUrl}` : ''}
+        backgroundImageUrl={ data.backgroundImageUrl ? `${adress}${data.backgroundImageUrl}` : ''}
         user={data.user}
         isFullPost
       >

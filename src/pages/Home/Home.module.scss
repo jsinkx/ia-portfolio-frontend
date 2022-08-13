@@ -42,7 +42,7 @@
     user-select: none;
 }
 
-@media only screen and (min-width: 290px) and (max-width: 1300px) {
+@media only screen and (min-width: 750px) and (max-width: 1300px) {
 
     .backgroundWrap {
         grid-template-areas: "bc1";
@@ -58,4 +58,10 @@
         margin-top: 130px;
     }
 
+}
+
+@media only screen and (min-width: 290px) and (max-width: 1000px) {
+    .workSection {
+        display: none ;
+    }
 }

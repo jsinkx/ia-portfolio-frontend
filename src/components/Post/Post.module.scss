@@ -14,6 +14,16 @@
         transition: all 0.3s;
     }
 
+    .projectBgr {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        text-align: center;
+        align-items: center;
+        font-size: 1.2em;
+        transition: all 0.3s;
+    }
+
     :hover {
         background-color: #EBFF00;
     }
@@ -42,24 +52,6 @@
                 margin-left: 30px;
                 pointer-events: none;
                 user-select: none;
-            }
-        }
-    }
-}
-
-@media only screen and (min-width: 290px) and (max-width: 1300px) {
-    .projNav {
-        font-size: 20px;
-    }
-
-    .content {
-
-        .postImages {
-
-            img {
-                width: 100% !important;
-                border: 1px solid red;
-                margin: 15px auto !important;
             }
         }
     }
