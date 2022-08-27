@@ -1,8 +1,8 @@
 import axios from 'axios'
-import adress from './config'
+import address from './config'
 
 const instance = axios.create({
-	baseURL: adress,
+	baseURL: address,
 })
 
 instance.interceptors.request.use((cfg) => {
