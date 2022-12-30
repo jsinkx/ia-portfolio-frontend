@@ -23,7 +23,7 @@ const FullPost = () => {
 				console.warn(err)
 				alert('Ошибка при получении статьи')
 			})
-	}, [])
+	}, [id])
 
 	if (isLoading) {
 		return <Post isLoading={isLoading} isFullPost />
@@ -37,8 +37,7 @@ const FullPost = () => {
 				images={data.images}
 				backgroundImageUrl={data.backgroundImageUrl ? `${address}${data.backgroundImageUrl}` : ''}
 				user={data.user}
-				isFullPost
-			>
+				isFullPost>
 				<ReactMarkdown children={data.text} />
 			</Post>
 		</div>

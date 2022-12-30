@@ -43,7 +43,7 @@ const Post = ({ id, title, children, backgroundImageUrl, images, isEditable, isB
 							{images.map((imageAddress) => {
 								return (
 									<>
-										<img src={`${address}${imageAddress}`} alt="pic"/>
+										<img src={`${address}${imageAddress}`} alt='pic' />
 									</>
 								)
 							})}
@@ -55,7 +55,7 @@ const Post = ({ id, title, children, backgroundImageUrl, images, isEditable, isB
 			</div>
 		</>
 	) : (
-		<NavLink to={`/posts/${id}`} className={classes.projNav} onClick={() => this.forceUpdate()}>
+		<NavLink to={`/posts/${id}`} className={classes.projNav}>
 			<div className={isBurger ? classes.projectBgr : classes.project}>
 				{isEditable ? (
 					<div className={classes.editButtons}>
