@@ -4,9 +4,10 @@ import Login from './pages/Login/Login'
 import { useDispatch } from 'react-redux'
 
 import './App.scss'
-import Header from './components/Header/Header'
-import Home from './pages/Home/Home'
 import { fetchAuthMe } from './redux/slices/auth'
+import Header from './components/Header/Header'
+
+import Home from './pages/Home/Home'
 import FullPost from './pages/FullPost/FullPost'
 import AddPost from './pages/AddPost/AddPost'
 

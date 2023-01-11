@@ -5,9 +5,9 @@ const instance = axios.create({
 	baseURL: address,
 })
 
-instance.interceptors.request.use((cfg) => {
-	cfg.headers.Authorization = window.localStorage.getItem('token')
-	return cfg
+instance.interceptors.request.use((config) => {
+	config.headers.Authorization = window.localStorage.getItem('token')
+	return config
 })
 
 export default instance
