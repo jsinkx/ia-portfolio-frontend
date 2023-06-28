@@ -1,27 +1,41 @@
-# Клиентская часть проекта "IA PORTFOLIO"
+# IA portfolio frontend
+---
 
-## Установка
+## [Available production](http://ilyaalenichev.ru/)
 
-Для запуска frontend части нужно:
+## Installation
 
-1. [Node.js](https://nodejs.org/) v10+.
-2. npm v6.14.10+
-3. Установленный git
-4. Установить все зависимости
-5. По умолчанию адрес: [http://localhost:3000](http://localhost:3000)
+1. [`Node.js`](https://nodejs.org/) `LTS`
+2. [`npm`](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) or [`yarn`](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable)
+3. [`git`](https://git-scm.com/)
+4. Install all dependencies (see below)
 
 ```sh
 cd IA-portfolio-frontend
-npm i
+yarn install 
+# or
+npm install
 ```
 
-## Команды
+## Mode development
+`yarn start` 
 
-```sh
-npm start // Запуск
-npm run build // Сборка production
-```
+## Mode production
+`yarn add -g serve`
+`yarn run build`
+`serve -s build`
 
-## Настройка:
+## Stack
+- Typescript
+- React
+- react-router-dom
+- react-markdown
+- react-simplemde-editor
+- Axios
+- Redux Toolkit
+- SASS
+- MUI 
 
-- Адрес сервера находится в src/config.js
+## Configuration
+Backend address is located in `./src/shared/config.ts` as `address`
+htaccess config file is located in `./public/.htaccess`
