@@ -11,7 +11,12 @@ import useAppSelector from '../../hooks/useAppSelector'
 
 import { selectIsAuth } from '../../redux/slices/auth/selectors'
 
-import axios from '../../axios'
+import updatePost from '../../api/updatePost'
+import createPost from '../../api/createPost'
+import getPost from '../../api/getPost'
+import uploadImage from '../../api/uploadImage'
+import type PostFields from '../../api/types/PostFields'
+
 import config from '../../shared/config'
 
 import Image from '../../components/Image/Image'
@@ -38,19 +43,18 @@ const AddPost = () => {
 
 	const isEditing = Boolean(id)
 
-	// Rewrite on one handle with cb
+	const setImageStates = (newImage: string) => {
+		setImage(newImage)
+		setImages((p) => [...p, newImage])
+	}
 
-	const handleAddImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleChangeImage = async (event: React.ChangeEvent<HTMLInputElement>, cb: (url: string) => void) => {
 		try {
-			const formData = new FormData()
 			const file = (event.target.files || [])[0] as unknown as Blob
 
-			formData.append('image', file)
+			const { url } = await uploadImage(file)
 
-			const { url } = (await axios.post('/upload', formData)).data
-
-			setImage(url)
-			setImages((p) => [...p, url])
+			cb(url)
 		} catch (err) {
 			console.warn(err)
 
@@ -62,23 +66,6 @@ const AddPost = () => {
 		const newImages = images.filter((_, index) => index !== imgIndex)
 
 		setImages(newImages)
-	}
-
-	const handleChangeFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
-		try {
-			const formData = new FormData()
-			const file = (event.target.files || [])[0] as unknown as Blob
-
-			formData.append('image', file)
-
-			const { url } = (await axios.post('/upload', formData)).data
-
-			setImageBackgroundUrl(url)
-		} catch (err) {
-			console.warn(err)
-
-			alert('Ошибка при загрузке файла!')
-		}
 	}
 
 	const onClickRemoveImage = () => {
@@ -93,16 +80,14 @@ const AddPost = () => {
 		try {
 			setLoading(true)
 
-			const fields = {
+			const fields: PostFields = {
 				title,
 				backgroundImageUrl: backgroundImageUrl,
 				images,
 				text,
 			}
 
-			const { data } = isEditing
-				? await axios.patch(`/posts/${id}`, fields)
-				: await axios.post('/posts', fields)
+			const data = isEditing && id ? await updatePost(id, fields) : await createPost(fields)
 
 			const _id = isEditing ? id : data._id
 			navigate(`/posts/${_id}`)
@@ -112,11 +97,11 @@ const AddPost = () => {
 		}
 	}
 
+	// Getting post by id
 	React.useEffect(() => {
-		if (id) {
-			axios
-				.get(`/posts/${id}`)
-				.then(({ data }) => {
+		id &&
+			getPost(id)
+				.then((data) => {
 					setTitle(data.title)
 					setText(data.text)
 					setImages(data.images)
@@ -126,10 +111,9 @@ const AddPost = () => {
 					console.warn(err)
 					alert('Ошибка при получении поста')
 				})
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+	}, [id])
 
+	// MD Editor options
 	const options = React.useMemo(
 		() => ({
 			spellChecker: false,
@@ -145,9 +129,7 @@ const AddPost = () => {
 		[]
 	)
 
-	if (!window.localStorage.getItem('token') && !isAuth) <Navigate to='/' />
-
-	const bgrImgStyle = {
+	const headerImageStyles = {
 		width: '100%',
 		height: '200px',
 		backgroundImage: backgroundImageUrl ? `url(${config.address}${backgroundImageUrl})` : 'none',
@@ -157,11 +139,18 @@ const AddPost = () => {
 		// userSelect: 'none',
 	}
 
+	if (!window.localStorage.getItem('token') && !isAuth) <Navigate to='/' />
+
 	return (
 		<>
-			<div style={bgrImgStyle}></div>
+			<div style={headerImageStyles}></div>
 			<div className={classes.addPostPage}>
-				<input ref={inputFileRef} type='file' onChange={handleChangeFile} hidden />
+				<input
+					ref={inputFileRef}
+					type='file'
+					onChange={(e) => handleChangeImage(e, setImageBackgroundUrl)}
+					hidden
+				/>
 				<div className={classes.actionButtonsImg}>
 					<Button onClick={() => inputFileRef.current?.click()} variant='outlined' size='large'>
 						Загрузить превью
@@ -192,7 +181,12 @@ const AddPost = () => {
 				/>
 				<h2> Добавить изображения </h2>
 				<div className={classes.blockAddImages}>
-					<input ref={inputAddImgRef} type='file' onChange={handleAddImage} hidden />
+					<input
+						ref={inputAddImgRef}
+						type='file'
+						onChange={(e) => handleChangeImage(e, setImageStates)}
+						hidden
+					/>
 					<div
 						className={classes.addImageBlock}
 						title='Добавить изображение'

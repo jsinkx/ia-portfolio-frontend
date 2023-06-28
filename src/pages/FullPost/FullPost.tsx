@@ -2,11 +2,11 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 
-import axios from '../../axios'
-
 import Post from '../../components/Post/Post'
 
 import { Post as PostT } from '../../redux/slices/post/types'
+
+import getPost from '../../api/getPost'
 
 import config from '../../shared/config'
 
@@ -19,16 +19,16 @@ const FullPost = () => {
 	const [isLoading, setLoading] = React.useState(true)
 
 	React.useEffect(() => {
-		axios
-			.get(`/posts/${id}`)
-			.then((res) => {
-				setData(res.data)
-				setLoading(false)
-			})
-			.catch((err) => {
-				console.warn(err)
-				alert('Ошибка при получении статьи')
-			})
+		id &&
+			getPost(id)
+				.then((data) => {
+					setData(data)
+					setLoading(false)
+				})
+				.catch((err) => {
+					console.warn(err)
+					alert('Ошибка при получении поста')
+				})
 	}, [id])
 
 	if (isLoading) {
