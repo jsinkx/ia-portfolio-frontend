@@ -1,57 +1,57 @@
 .projNav {
-    margin: 5px 0 5px 0;
-    color: black;
-    text-decoration: none;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 50px;
-    font-weight: 900;
+	margin: 5px 0 5px 0;
+	color: black;
+	text-decoration: none;
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 50px;
+	font-weight: 900;
 
-    .project {
-        display: flex;
-        justify-content: right;
-        width: 99%;
-        float: right;
-        transition: all 0.3s;
-    }
+	.project {
+		display: flex;
+		justify-content: right;
+		width: 99%;
+		float: right;
+		transition: all 0.3s;
+	}
 
-    .projectBgr {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        text-align: center;
-        align-items: center;
-        font-size: 1.2em;
-        transition: all 0.3s;
-    }
+	.projectBgr {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+		text-align: center;
+		align-items: center;
+		font-size: 1.2em;
+		transition: all 0.3s;
+	}
 
-    :hover {
-        background-color: #EBFF00;
-    }
+	:hover {
+		background-color: #ebff00;
+	}
 }
 
 .postBox {
-    width: 80%;
-    margin: 0 auto;
-    h2 {
-        font-size: 2em;
-    }
+	width: 80%;
+	margin: 0 auto;
+	h2 {
+		font-size: 2em;
+	}
 
-    .content {
-        width: 100%;
-        margin: 0 auto;
-        text-align: left;
+	.content {
+		width: 100%;
+		margin: 0 auto;
+		text-align: left;
 
-        .postImages {
-            display: flex;
-            justify-content: start;
-            flex-wrap: wrap;
+		.postImages {
+			display: flex;
+			justify-content: flex-start;
+			flex-wrap: wrap;
 
-            img {
-                width: 56%;
-                margin: 15px auto;
-                pointer-events: none;
-                user-select: none;
-            }
-        }
-    }
+			img {
+				width: 56%;
+				margin: 15px auto;
+				pointer-events: none;
+				user-select: none;
+			}
+		}
+	}
 }

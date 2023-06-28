@@ -1,83 +1,82 @@
-.addPostPage { 
-    width: 80%;
-    margin: 0 auto;
-    text-align: center;
-    box-sizing: border-box;
+.addPostPage {
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+	box-sizing: border-box;
 }
 
 .title {
-    input {
-      font-size: 42px;
-      font-weight: 900;
-      background-color: #F5F5F5;
-    }
-  
-    div {
-      &:before,
-      &:after {
-        display: none;
-      }
-    }
-  }
-  
-  .image {
-    width: 100%;
-  }
-  
-  .editor {
-    max-width: 100%;
-    margin: 30px auto;
-  
-    :global {
-      .cm-s-easymde {
-        border: 0;
-        font-size: 22px;
-        background-color: #F5F5F5;
-      }
-      .editor-toolbar {
-        border: 0;
-        background-color: rgb(0 0 0 / 2%);
-      }
-    }
-  }
-  
-  .buttons {
-    display: flex;
-    margin-bottom: 30px;
+	input {
+		font-size: 42px;
+		font-weight: 900;
+		background-color: #f5f5f5;
+	}
 
-    button {
-      margin-right: 15px;
-    }
-  }
-  
-.actionButtonsImg Button{
-  margin: 10px;
+	div {
+		&:before,
+		&:after {
+			display: none;
+		}
+	}
+}
+
+.image {
+	width: 100%;
+}
+
+.editor {
+	max-width: 100%;
+	margin: 30px auto;
+
+	:global {
+		.cm-s-easymde {
+			border: 0;
+			font-size: 22px;
+			background-color: #f5f5f5;
+		}
+		.editor-toolbar {
+			border: 0;
+			background-color: rgb(0 0 0 / 2%);
+		}
+	}
+}
+
+.buttons {
+	display: flex;
+	margin-bottom: 30px;
+
+	button {
+		margin-right: 15px;
+	}
+}
+
+.actionButtonsImg Button {
+	margin: 10px;
 }
 
 .blockAddImages {
-  display: flex;
-  justify-content: start;
-  flex-wrap: wrap;
-  margin: 20px 0;
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	margin: 20px 0;
 
-  .addImageBlock {
-    width: 180px;
-    height: 300px;
-    margin: 20px 0;
-    margin-right: 60px;
-    background-color: #F5F5F5;
-    border-radius: 15px;
-    align-items: center;
-    transition: all 0.3s;
-    
-    button {
-      margin-top: 50%;
-    }
-  }
-  
+	.addImageBlock {
+		width: 180px;
+		height: 300px;
+		margin: 20px 0;
+		margin-right: 60px;
+		background-color: #f5f5f5;
+		border-radius: 15px;
+		align-items: center;
+		transition: all 0.3s;
+
+		button {
+			margin-top: 50%;
+		}
+	}
 }
 
-.addImageBlock:hover{
-  cursor: pointer;
-  background-color: #ece9e9;
+.addImageBlock:hover {
+	cursor: pointer;
+	background-color: #ece9e9;
 }
