@@ -1,36 +1,35 @@
-@import "../../../../assets/styles/index.scss";
+@import '../../../../assets/styles/index.scss';
 
 .contactsSection {
+	.pTitle {
+		font-family: 'Consolas', Consolas, 'Inconsolata', monospace;
+		color: #ababab;
+		user-select: none;
+	}
 
-    .pTitle {
-        font-family: "Consolas", Consolas, 'Inconsolata', monospace;
-        color: #ABABAB;
-        user-select: none;
-    }
+	.myContacts {
+		display: inline-block;
+		vertical-align: middle;
+		transition: all 0.211s;
 
-    .myContacts {   
-        display: inline-block;
-        vertical-align: middle;
-        transition: all 0.211s;
-    
-        div {
-            a {
-                color: black;
-                text-decoration-color: black;
-                transition: all 0.211s;
-            }
-    
-            a:hover {
-                color: #EBFF00;
-            }
-    
-            .contactIcon {
-                height: 17px;
-                margin-right: 10px;
-                vertical-align: middle;
-                user-select: none;
-            }
-        }
-    
-    }
+		div {
+			a {
+				color: black;
+				text-decoration-color: black;
+				transition: all 0.211s;
+			}
+
+			a:hover {
+				color: #1976d2;
+				text-decoration-color: #1976d2;
+			}
+
+			.contactIcon {
+				height: 17px;
+				margin-right: 10px;
+				vertical-align: middle;
+				user-select: none;
+			}
+		}
+	}
 }

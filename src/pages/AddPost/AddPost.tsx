@@ -19,7 +19,7 @@ import type PostFields from '../../api/types/PostFields'
 
 import config from '../../shared/config'
 
-import Image from '../../components/Image/Image'
+import Images from '../../components/Images/Images'
 
 import 'easymde/dist/easymde.min.css'
 import classes from './AddPost.module.scss'
@@ -195,7 +195,7 @@ const AddPost = () => {
 							<AddIcon sx={{ fontSize: '120px' }} />
 						</IconButton>
 					</div>
-					<Image images={images} deleteImage={deleteImage} isEditing />
+					<Images images={images} deleteImage={deleteImage} isEditing />
 				</div>
 				<div className={classes.buttons}>
 					<Button onClick={onSubmit} size='large' variant='contained'>

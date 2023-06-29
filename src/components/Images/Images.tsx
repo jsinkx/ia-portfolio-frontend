@@ -5,15 +5,15 @@ import DeleteIcon from '@mui/icons-material/Delete'
 
 import config from '../../shared/config'
 
-import classes from './Image.module.scss'
+import classes from './Images.module.scss'
 
-type ImageProps = {
+type ImagesProps = {
 	images: string[]
 	deleteImage: (index: number) => void
 	isEditing: boolean
 }
 
-const Image: React.FC<ImageProps> = ({ images, deleteImage, isEditing }) => {
+const Images: React.FC<ImagesProps> = ({ images, deleteImage, isEditing }) => {
 	return (
 		<>
 			{isEditing
@@ -27,7 +27,7 @@ const Image: React.FC<ImageProps> = ({ images, deleteImage, isEditing }) => {
 						}
 
 						return (
-							<div className={classes.addImageBlock} style={styleImg}>
+							<div key={imgAddress} className={classes.addImageBlock} style={styleImg}>
 								<IconButton onClick={() => deleteImage(index)}>
 									<DeleteIcon sx={{ fontSize: '120px' }} color='error' />
 								</IconButton>
@@ -39,4 +39,4 @@ const Image: React.FC<ImageProps> = ({ images, deleteImage, isEditing }) => {
 	)
 }
 
-export default Image
+export default Images

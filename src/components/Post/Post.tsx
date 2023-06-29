@@ -25,8 +25,6 @@ type PostProps = {
 	isFullPost?: boolean
 }
 
-const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16)
-
 const Post: React.FC<PostProps> = ({
 	id,
 	title,
@@ -46,6 +44,8 @@ const Post: React.FC<PostProps> = ({
 			id && dispatch(fetchRemovePost(id))
 		}
 	}
+
+	const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16)
 
 	const bgrImgStyle = {
 		marginTop: '-150px',
@@ -71,7 +71,7 @@ const Post: React.FC<PostProps> = ({
 							{images.map((imageAddress) => {
 								return (
 									<>
-										<img src={`${config.address}${imageAddress}`} alt='pic' />
+										<img key={imageAddress} src={`${config.address}${imageAddress}`} alt='pic' />
 									</>
 								)
 							})}
