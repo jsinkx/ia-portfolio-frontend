@@ -39,10 +39,11 @@ const Post: React.FC<PostProps> = ({
 }) => {
 	const dispatch = useAppDispatch()
 
-	const onClickRemove = () => {
+	const onClickRemove = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+		event.preventDefault()
+
 		if (window.confirm('Вы действительно хотите удалить статью ?')) {
 			id && dispatch(fetchRemovePost(id))
-			// window.location.reload()
 		}
 	}
 
