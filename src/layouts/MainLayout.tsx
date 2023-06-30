@@ -1,9 +1,8 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 
-import logo from '../assets/img/logo.png'
-
 import defaultKeywords from '../shared/defaultKeywords'
+import config from '../shared/config'
 
 type MainLayoutProps = {
 	title?: string
@@ -13,10 +12,16 @@ type MainLayoutProps = {
 	children: React.ReactNode
 }
 
-const MainLayout: React.FC<MainLayoutProps> = ({ title, description, keywords = [], image, children }) => {
+const MainLayout: React.FC<MainLayoutProps> = ({
+	title,
+	description = '',
+	keywords = [],
+	image,
+	children,
+}) => {
 	const _title = `${title?.concat(' - ') || ''}Илья Аленичев`
 	const _description = `Сайт-портфолио индивидуальных достижений Ильи Аленичева. ${description}`
-	const _image = image || logo
+	const _image = image || config.mainLogoAddress
 
 	return (
 		<>
@@ -29,6 +34,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ title, description, keywords = 
 				<meta property='og:description' content={_description} />
 				<meta property='og:image' content={_image} />
 				<meta itemProp='image' content={_image} />
+				<link rel='image_src' href={_image} />
 			</Helmet>
 			{children}
 		</>
