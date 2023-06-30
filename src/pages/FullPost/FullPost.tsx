@@ -32,12 +32,12 @@ const FullPost = () => {
 				})
 	}, [id])
 
-	if (isLoading) {
+	if (isLoading || !data?.title) {
 		return <Post isLoading={isLoading} isFullPost />
 	}
 
 	return (
-		<MainLayout title={data?.title || 'Загрузка'}>
+		<MainLayout title={data?.title} image={data?.backgroundImageUrl}>
 			<div className={classes.fullPostPage}>
 				<Post
 					id={data?._id as unknown as string}
