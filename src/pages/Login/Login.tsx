@@ -12,6 +12,7 @@ import { selectIsAuth } from '../../redux/slices/auth/selectors'
 import { fetchAuth } from '../../redux/slices/auth/auth'
 
 import classes from './Login.module.scss'
+import MainLayout from '../../layouts/MainLayout'
 
 const Login = () => {
 	const dispatch = useAppDispatch()
@@ -47,38 +48,40 @@ const Login = () => {
 	if (isAuth) return <Navigate to='/' />
 
 	return (
-		<div className={classes.loginBox}>
-			<h2 className={classes.title}>Вход в аккаунт</h2>
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<TextField
-					className={classes.field}
-					label='E-Mail'
-					type='email'
-					error={Boolean(errors.email?.message)}
-					helperText={errors.email?.message}
-					{...register('email', { required: 'Укажите почту' })}
-				/>
-				<TextField
-					className={classes.field}
-					label='Пароль'
-					type='password'
-					{...register('password', { required: 'Введите пароль' })}
-					helperText={errors.password?.message}
-					error={Boolean(errors.password?.message)}
-				/>
-				<Button
-					disabled={!isValid}
-					size='large'
-					variant='contained'
-					type='submit'
-					sx={{
-						width: 150,
-						backgroundColor: 'black',
-					}}>
-					Войти
-				</Button>
-			</form>
-		</div>
+		<MainLayout title='Авторизация'>
+			<div className={classes.loginBox}>
+				<h2 className={classes.title}>Вход в аккаунт</h2>
+				<form onSubmit={handleSubmit(onSubmit)}>
+					<TextField
+						className={classes.field}
+						label='E-Mail'
+						type='email'
+						error={Boolean(errors.email?.message)}
+						helperText={errors.email?.message}
+						{...register('email', { required: 'Укажите почту' })}
+					/>
+					<TextField
+						className={classes.field}
+						label='Пароль'
+						type='password'
+						{...register('password', { required: 'Введите пароль' })}
+						helperText={errors.password?.message}
+						error={Boolean(errors.password?.message)}
+					/>
+					<Button
+						disabled={!isValid}
+						size='large'
+						variant='contained'
+						type='submit'
+						sx={{
+							width: 150,
+							backgroundColor: 'black',
+						}}>
+						Войти
+					</Button>
+				</form>
+			</div>
+		</MainLayout>
 	)
 }
 

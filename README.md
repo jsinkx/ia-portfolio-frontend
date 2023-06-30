@@ -29,6 +29,7 @@ npm install
 - Typescript
 - React
 - react-router-dom
+- react-helmet
 - react-markdown
 - react-simplemde-editor
 - Axios

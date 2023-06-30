@@ -11,6 +11,7 @@ import getPost from '../../api/getPost'
 import config from '../../shared/config'
 
 import classes from './FullPost.module.scss'
+import MainLayout from '../../layouts/MainLayout'
 
 const FullPost = () => {
 	const { id } = useParams()
@@ -36,16 +37,18 @@ const FullPost = () => {
 	}
 
 	return (
-		<div className={classes.fullPostPage}>
-			<Post
-				id={data?._id as unknown as string}
-				title={data?.title as unknown as string}
-				images={data?.images as unknown as string[]}
-				backgroundImageUrl={data?.backgroundImageUrl ? `${config.address}${data?.backgroundImageUrl}` : ''}
-				isFullPost>
-				<ReactMarkdown children={data?.text as unknown as string} />
-			</Post>
-		</div>
+		<MainLayout title={data?.title || 'Загрузка'}>
+			<div className={classes.fullPostPage}>
+				<Post
+					id={data?._id as unknown as string}
+					title={data?.title as unknown as string}
+					images={data?.images as unknown as string[]}
+					backgroundImageUrl={data?.backgroundImageUrl ? `${config.address}${data?.backgroundImageUrl}` : ''}
+					isFullPost>
+					<ReactMarkdown children={data?.text as unknown as string} />
+				</Post>
+			</div>
+		</MainLayout>
 	)
 }
 

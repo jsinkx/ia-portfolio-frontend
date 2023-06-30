@@ -23,6 +23,7 @@ import Images from '../../components/Images/Images'
 
 import 'easymde/dist/easymde.min.css'
 import classes from './AddPost.module.scss'
+import MainLayout from '../../layouts/MainLayout'
 
 const AddPost = () => {
 	const { id } = useParams()
@@ -142,7 +143,7 @@ const AddPost = () => {
 	if (!window.localStorage.getItem('token') && !isAuth) <Navigate to='/' />
 
 	return (
-		<>
+		<MainLayout title={isEditing ? 'Редактирование' : 'Создание'}>
 			<div style={headerImageStyles}></div>
 			<div className={classes.addPostPage}>
 				<input
@@ -208,7 +209,7 @@ const AddPost = () => {
 					</a>
 				</div>
 			</div>
-		</>
+		</MainLayout>
 	)
 }
 

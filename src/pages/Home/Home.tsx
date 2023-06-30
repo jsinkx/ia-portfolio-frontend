@@ -12,6 +12,7 @@ import BusinessInfo from './BusinessInfo/BusinessInfo'
 import Post from '../../components/Post/Post'
 
 import classes from './Home.module.scss'
+import MainLayout from '../../layouts/MainLayout'
 
 const Home = () => {
 	const dispatch = useAppDispatch()
@@ -27,7 +28,7 @@ const Home = () => {
 	}, [])
 
 	return (
-		<>
+		<MainLayout>
 			<div className={classes.backgroundWrap}>
 				<div className={classes.backgroundFirst}></div>
 				<div className={classes.backgroundSecond}></div>
@@ -45,7 +46,7 @@ const Home = () => {
 					)}
 				</div>
 			</div>
-		</>
+		</MainLayout>
 	)
 }
 
