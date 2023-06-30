@@ -14,7 +14,7 @@ type MainLayoutProps = {
 }
 
 const MainLayout: React.FC<MainLayoutProps> = ({ title, description, keywords = [], image, children }) => {
-	const _title = `${title?.concat(' - ')}Илья Аленичев`
+	const _title = `${title?.concat(' - ') || ''}Илья Аленичев`
 	const _description = `Сайт-портфолио индивидуальных достижений Ильи Аленичева. ${description}`
 	const _image = image || logo
 
@@ -28,6 +28,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ title, description, keywords = 
 				<meta property='og:site_name' content='Илья Аленичев' />
 				<meta property='og:description' content={_description} />
 				<meta property='og:image' content={_image} />
+				<meta itemProp='image' content={_image} />
 			</Helmet>
 			{children}
 		</>

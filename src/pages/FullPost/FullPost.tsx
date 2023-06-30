@@ -37,7 +37,7 @@ const FullPost = () => {
 	}
 
 	return (
-		<MainLayout title={data?.title} image={data?.backgroundImageUrl}>
+		<MainLayout title={data?.title} image={`${config.address}${data?.backgroundImageUrl}`}>
 			<div className={classes.fullPostPage}>
 				<Post
 					id={data?._id as unknown as string}
