@@ -1,3 +1,4 @@
+import React from 'react'
 import { Navigate } from 'react-router-dom'
 import { FieldValues, useForm } from 'react-hook-form'
 
@@ -14,7 +15,7 @@ import { fetchAuth } from '../../redux/slices/auth/auth'
 import classes from './Login.module.scss'
 import MainLayout from '../../layouts/MainLayout'
 
-const Login = () => {
+const Login: React.FC = () => {
 	const dispatch = useAppDispatch()
 
 	const isAuth = useAppSelector(selectIsAuth)

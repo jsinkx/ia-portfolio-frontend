@@ -12,7 +12,7 @@ export const fetchPosts = createAsyncThunk<Post[]>('posts/fetchPosts', async () 
 	return data
 })
 
-export const fetchRemovePost = createAsyncThunk<{}, string>('posts/fetchRemovePost', async (id) => {
+export const fetchRemovePost = createAsyncThunk<object, string>('posts/fetchRemovePost', async (id) => {
 	axios.delete(`/posts/${id}`)
 })
 

@@ -25,7 +25,7 @@ import 'easymde/dist/easymde.min.css'
 import classes from './AddPost.module.scss'
 import MainLayout from '../../layouts/MainLayout'
 
-const AddPost = () => {
+const AddPost: React.FC = () => {
 	const { id } = useParams()
 
 	const navigate = useNavigate()
@@ -57,6 +57,7 @@ const AddPost = () => {
 
 			cb(url)
 		} catch (err) {
+			// eslint-disable-next-line no-console
 			console.warn(err)
 
 			alert('Ошибка при загрузке файла!')
@@ -93,6 +94,7 @@ const AddPost = () => {
 			const _id = isEditing ? id : data._id
 			navigate(`/posts/${_id}`)
 		} catch (err) {
+			// eslint-disable-next-line no-console
 			console.warn(err)
 			alert('Ошибка при создании поста!')
 		}
@@ -109,6 +111,7 @@ const AddPost = () => {
 					setImageBackgroundUrl(data.backgroundImageUrl)
 				})
 				.catch((err) => {
+					// eslint-disable-next-line no-console
 					console.warn(err)
 					alert('Ошибка при получении поста')
 				})

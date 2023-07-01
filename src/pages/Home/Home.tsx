@@ -14,7 +14,7 @@ import Post from '../../components/Post/Post'
 import classes from './Home.module.scss'
 import MainLayout from '../../layouts/MainLayout'
 
-const Home = () => {
+const Home: React.FC = () => {
 	const dispatch = useAppDispatch()
 
 	const userData = useAppSelector(selectAuthData) as unknown as User

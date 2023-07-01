@@ -13,7 +13,7 @@ import config from '../../shared/config'
 import classes from './FullPost.module.scss'
 import MainLayout from '../../layouts/MainLayout'
 
-const FullPost = () => {
+const FullPost: React.FC = () => {
 	const { id } = useParams()
 
 	const [data, setData] = React.useState<PostT>()
@@ -27,6 +27,7 @@ const FullPost = () => {
 					setLoading(false)
 				})
 				.catch((err) => {
+					// eslint-disable-next-line no-console
 					console.warn(err)
 					alert('Ошибка при получении поста')
 				})
@@ -45,7 +46,7 @@ const FullPost = () => {
 					images={data?.images as unknown as string[]}
 					backgroundImageUrl={data?.backgroundImageUrl ? `${config.address}${data?.backgroundImageUrl}` : ''}
 					isFullPost>
-					<ReactMarkdown children={data?.text as unknown as string} />
+					<ReactMarkdown>{data?.text as unknown as string}</ReactMarkdown>
 				</Post>
 			</div>
 		</MainLayout>

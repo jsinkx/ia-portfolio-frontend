@@ -1,9 +1,11 @@
+import React from 'react'
+
 import emailIcon from './../../../../assets/img/icons/email-icon.png'
 import phoneIcon from './../../../../assets/img/icons/telephone-icon.png'
 
 import classes from './Contacts.module.scss'
 
-const Contacts = () => {
+const Contacts: React.FC = () => {
 	return (
 		<section className={classes.contactsSection}>
 			<p className={classes.pTitle}> КОНТАКТЫ </p>

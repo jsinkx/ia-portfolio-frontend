@@ -1,6 +1,8 @@
+import React from 'react'
+
 import classes from './Socials.module.scss'
 
-const Socials = () => {
+const Socials: React.FC = () => {
 	return (
 		<section className={classes.socialSection}>
 			<p className={classes.pTitle}> ТАКЖЕ ЕСТЬ </p>

@@ -1,6 +1,8 @@
+import React from 'react'
+
 import classes from './Intro.module.scss'
 
-const Intro = () => {
+const Intro: React.FC = () => {
 	return (
 		<section className={classes.introSection}>
 			<p className={classes.pTitle}> ВСТУПЛЕНИЕ </p>
