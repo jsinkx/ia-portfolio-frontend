@@ -8,11 +8,16 @@ import { selectAuthData } from '../../redux/slices/auth/selectors'
 import { selectPosts } from '../../redux/slices/post/selectors'
 import { fetchPosts } from '../../redux/slices/post/slice'
 
-import BusinessInfo from './BusinessInfo/BusinessInfo'
+import MainLayout from '../../layouts/MainLayout'
+
 import Post from '../../components/Post/Post'
 
-import classes from './Home.module.scss'
-import MainLayout from '../../layouts/MainLayout'
+import Contacts from './Contacts'
+import Socials from './Socials'
+import Intro from './Intro'
+
+import classes from '../../assets/styles/pages/Home/Home.module.scss'
+import AboutMe from './AboutMe'
 
 const Home: React.FC = () => {
 	const dispatch = useAppDispatch()
@@ -34,7 +39,13 @@ const Home: React.FC = () => {
 				<div className={classes.backgroundSecond}></div>
 			</div>
 			<div className={classes.contentSection}>
-				<BusinessInfo />
+				<div className={classes.businessItems}>
+					<Intro />
+					<AboutMe />
+					<Contacts />
+					<Socials />
+				</div>
+
 				<div className={classes.workSection}>
 					<p className={classes.pTitle}> МОИ ДОСТИЖЕНИЯ </p>
 					{(isPostsLoading ? [...Array(2)] : items).map((obj, index) =>

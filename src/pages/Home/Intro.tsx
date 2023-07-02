@@ -1,6 +1,6 @@
 import React from 'react'
 
-import classes from './Intro.module.scss'
+import classes from '../../assets/styles/pages/Home/Intro.module.scss'
 
 const Intro: React.FC = () => {
 	return (

@@ -2,17 +2,17 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 
-import Post from '../../components/Post/Post'
+import { Post as PostT } from '../redux/slices/post/types'
 
-import { Post as PostT } from '../../redux/slices/post/types'
+import getPost from '../api/getPost'
 
-import getPost from '../../api/getPost'
+import config from '../shared/config'
 
-import config from '../../shared/config'
+import MainLayout from '../layouts/MainLayout'
 
-import classes from './FullPost.module.scss'
-import MainLayout from '../../layouts/MainLayout'
+import Post from '../components/Post/Post'
 
+import classes from '../assets/styles/pages/FullPost.module.scss'
 const FullPost: React.FC = () => {
 	const { id } = useParams()
 

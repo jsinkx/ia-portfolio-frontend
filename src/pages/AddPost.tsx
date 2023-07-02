@@ -7,23 +7,24 @@ import Button from '@mui/material/Button'
 import { IconButton } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 
-import useAppSelector from '../../hooks/useAppSelector'
+import useAppSelector from '../hooks/useAppSelector'
 
-import { selectIsAuth } from '../../redux/slices/auth/selectors'
+import { selectIsAuth } from '../redux/slices/auth/selectors'
 
-import updatePost from '../../api/updatePost'
-import createPost from '../../api/createPost'
-import getPost from '../../api/getPost'
-import uploadImage from '../../api/uploadImage'
-import type PostFields from '../../api/types/PostFields'
+import updatePost from '../api/updatePost'
+import createPost from '../api/createPost'
+import getPost from '../api/getPost'
+import uploadImage from '../api/uploadImage'
+import type PostFields from '../api/types/PostFields'
 
-import config from '../../shared/config'
+import config from '../shared/config'
 
-import Images from '../../components/Images/Images'
+import MainLayout from '../layouts/MainLayout'
+
+import Images from '../components/Images/Images'
 
 import 'easymde/dist/easymde.min.css'
-import classes from './AddPost.module.scss'
-import MainLayout from '../../layouts/MainLayout'
+import classes from '../assets/styles/pages/AddPost/AddPost.module.scss'
 
 const AddPost: React.FC = () => {
 	const { id } = useParams()

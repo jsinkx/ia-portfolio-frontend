@@ -1,6 +1,6 @@
 import React from 'react'
 
-import classes from './Socials.module.scss'
+import classes from '../../assets/styles/pages/Home/Socials.module.scss'
 
 const Socials: React.FC = () => {
 	return (

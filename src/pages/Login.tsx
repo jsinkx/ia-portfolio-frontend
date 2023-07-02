@@ -5,15 +5,16 @@ import { FieldValues, useForm } from 'react-hook-form'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 
-import useAppDispatch from '../../hooks/useAppDispatch'
-import useAppSelector from '../../hooks/useAppSelector'
+import useAppDispatch from '../hooks/useAppDispatch'
+import useAppSelector from '../hooks/useAppSelector'
 
-import { AuthLoginThunk } from '../../redux/slices/auth/types'
-import { selectIsAuth } from '../../redux/slices/auth/selectors'
-import { fetchAuth } from '../../redux/slices/auth/auth'
+import { AuthLoginThunk } from '../redux/slices/auth/types'
+import { selectIsAuth } from '../redux/slices/auth/selectors'
+import { fetchAuth } from '../redux/slices/auth/auth'
 
-import classes from './Login.module.scss'
-import MainLayout from '../../layouts/MainLayout'
+import MainLayout from '../layouts/MainLayout'
+
+import classes from '../assets/styles/pages/Login.module.scss'
 
 const Login: React.FC = () => {
 	const dispatch = useAppDispatch()

@@ -1,0 +1,72 @@
+@import '../../modules/index.scss';
+.backgroundWrap {
+	display: grid;
+	position: relative;
+	grid-template-areas: 'bc1 bc2';
+	grid-template-columns: 1fr 3fr;
+	min-height: 100vh;
+	z-index: 5;
+
+	// .backgroundFirst {}
+
+	.backgroundSecond {
+		height: 100%;
+		background-color: #f5f5f5;
+	}
+}
+
+.contentSection {
+	display: grid;
+	grid-template-areas: 'ib pb';
+	grid-template-columns: 3fr 2fr;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	margin-top: 230px;
+	box-sizing: border-box;
+	z-index: 99;
+
+	.workSection {
+		grid-area: pb;
+		text-align: right;
+		margin-right: 30px;
+	}
+}
+
+.pTitle {
+	font-family: 'Consolas', Consolas, 'Inconsolata', monospace;
+	color: #ababab;
+	user-select: none;
+}
+
+@media only screen and (min-width: 750px) and (max-width: 1300px) {
+	.backgroundWrap {
+		grid-template-areas: 'bc1';
+		grid-template-columns: 2fr 4fr;
+		min-height: 100fr;
+	}
+
+	.contentSection {
+		display: grid;
+		grid-template-areas: 'ib pb';
+		grid-template-columns: 3fr 2fr;
+		margin-top: 110px;
+	}
+}
+
+@media only screen and (min-width: 290px) and (max-width: 1000px) {
+	.workSection {
+		display: none;
+	}
+}
+
+.businessItems {
+	grid-area: ib;
+	margin-left: 117px;
+}
+
+@media only screen and (min-width: 290px) and (max-width: 1300px) {
+	.businessItems {
+		margin-left: 30px;
+	}
+}

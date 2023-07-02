@@ -7,12 +7,12 @@ import { fetchAuthMe } from './redux/slices/auth/auth'
 
 import Header from './components/Header/Header'
 
-import Login from './pages/Login/Login'
-import Home from './pages/Home/Home'
-import FullPost from './pages/FullPost/FullPost'
-import AddPost from './pages/AddPost/AddPost'
+import Login from './pages/Login'
+import Home from './pages/Home'
+import FullPost from './pages/FullPost'
+import AddPost from './pages/AddPost'
 
-import './App.scss'
+import './assets/styles/App.scss'
 
 const App = () => {
 	const dispatch = useAppDispatch()
@@ -29,9 +29,9 @@ const App = () => {
 				<Routes>
 					<Route path='/*' element={<Home />} />
 					<Route path='login' element={<Login />} />
-					<Route path='add-post' element={<AddPost />} />
 					<Route path='posts/:id' element={<FullPost />} />
 					<Route path='posts/:id/edit' element={<AddPost />} />
+					<Route path='add-post' element={<AddPost />} />
 				</Routes>
 			</div>
 		</div>
