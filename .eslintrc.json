@@ -4,7 +4,7 @@
 		"es2021": true
 	},
 	"extends": [
-		"plugin:@typescript-eslint/recommended",
+		"eslint:recommended",
 		"plugin:react-hooks/recommended",
 		"plugin:react/recommended",
 		"plugin:import/errors",
@@ -18,7 +18,6 @@
 			"version": "detect"
 		}
 	},
-	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
 		"ecmaFeatures": {
 			"jsx": true
@@ -26,7 +25,8 @@
 		"ecmaVersion": "latest",
 		"sourceType": "module"
 	},
-	"plugins": ["import", "react", "@typescript-eslint"],
+	"plugins": ["import", "react"],
+	"root": true,
 	"rules": {
 		"semi": ["error", "never"],
 		"no-console": "warn",
