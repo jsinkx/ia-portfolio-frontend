@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import config from './shared/config'
+import config from './config'
 
 const instance = axios.create({ baseURL: config.address })
 

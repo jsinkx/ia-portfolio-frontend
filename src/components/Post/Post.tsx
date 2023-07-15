@@ -68,9 +68,15 @@ const Post: React.FC<PostProps> = ({
 					{children}
 					{images && images.length > 0 ? (
 						<div className={classes.postImages}>
-							{images.map((imageAddress) => (
-								<img key={imageAddress} src={`${config.address}${imageAddress}`} alt="pic" />
-							))}
+							{images.map((imageAddress) => {
+								return (
+									<img
+										key={imageAddress}
+										src={`${config.address}${imageAddress}`}
+										alt="pic"
+									/>
+								)
+							})}
 						</div>
 					) : (
 						''

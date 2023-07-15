@@ -1,4 +1,4 @@
-import { RootState } from '../../store'
+import type { RootState } from './../../types'
 
 export const selectIsAuth = (state: RootState) => Boolean(state.auth.data)
 

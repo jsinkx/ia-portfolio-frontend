@@ -8,13 +8,13 @@ import Button from '@mui/material/Button'
 import useAppDispatch from '../hooks/useAppDispatch'
 import useAppSelector from '../hooks/useAppSelector'
 
-import { AuthLoginThunk } from '../redux/slices/auth/types'
 import { selectIsAuth } from '../redux/slices/auth/selectors'
 import { fetchAuth } from '../redux/slices/auth/auth'
 
 import MainLayout from '../layouts/MainLayout'
 
 import classes from '../assets/styles/pages/Login.module.scss'
+import { AuthLoginBody } from '../redux/slices/auth/types'
 
 const Login: React.FC = () => {
 	const dispatch = useAppDispatch()
@@ -34,7 +34,7 @@ const Login: React.FC = () => {
 	})
 
 	const onSubmit = async (values: FieldValues) => {
-		const data = await dispatch(fetchAuth(values as unknown as AuthLoginThunk))
+		const data = await dispatch(fetchAuth(values as unknown as AuthLoginBody))
 
 		if (!data.payload) {
 			return alert('Не удалось авторизоваться')
@@ -47,38 +47,39 @@ const Login: React.FC = () => {
 		}
 	}
 
-	if (isAuth) return <Navigate to='/' />
+	if (isAuth) return <Navigate to="/" />
 
 	return (
-		<MainLayout title='Авторизация'>
+		<MainLayout title="Авторизация">
 			<div className={classes.loginBox}>
 				<h2 className={classes.title}>Вход в аккаунт</h2>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<TextField
 						className={classes.field}
-						label='E-Mail'
-						type='email'
+						label="E-Mail"
+						type="email"
 						error={Boolean(errors.email?.message)}
 						helperText={errors.email?.message}
 						{...register('email', { required: 'Укажите почту' })}
 					/>
 					<TextField
 						className={classes.field}
-						label='Пароль'
-						type='password'
+						label="Пароль"
+						type="password"
 						{...register('password', { required: 'Введите пароль' })}
 						helperText={errors.password?.message}
 						error={Boolean(errors.password?.message)}
 					/>
 					<Button
 						disabled={!isValid}
-						size='large'
-						variant='contained'
-						type='submit'
+						size="large"
+						variant="contained"
+						type="submit"
 						sx={{
 							width: 150,
 							backgroundColor: 'black',
-						}}>
+						}}
+					>
 						Войти
 					</Button>
 				</form>
