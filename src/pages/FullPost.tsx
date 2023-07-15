@@ -47,7 +47,7 @@ const FullPost: React.FC = () => {
 				<Post
 					id={data?._id as unknown as string}
 					title={data?.title as unknown as string}
-					images={data?.images.map as unknown as string[]}
+					images={data?.images as unknown as string[]}
 					backgroundImageUrl={
 						data?.backgroundImageUrl ? `${config.address}${data?.backgroundImageUrl}` : ''
 					}
