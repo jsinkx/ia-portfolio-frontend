@@ -1,18 +1,18 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-import axios from '../../../axios'
+import axios from '../../../shared/axios'
 
-import { AuthData, AuthLoginThunk, IAuthState } from './types'
+import type { AuthLoginBody, AuthResponse, IAuthState } from './types'
 import Status from '../../../shared/status'
 
 // Thunks
 
-export const fetchAuth = createAsyncThunk<AuthData, AuthLoginThunk>('auth/fetchAuth', async (params) => {
+export const fetchAuth = createAsyncThunk<AuthResponse, AuthLoginBody>('auth/fetchAuth', async (params) => {
 	const { data } = await axios.post('/auth/login', params)
 	return data
 })
 
-export const fetchAuthMe = createAsyncThunk<AuthData>('auth/fetchAuthMe', async () => {
+export const fetchAuthMe = createAsyncThunk<AuthResponse>('auth/fetchAuthMe', async () => {
 	const { data } = await axios.get('/auth/me')
 	return data
 })

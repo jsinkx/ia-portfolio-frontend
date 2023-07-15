@@ -1,10 +1,5 @@
 import Status from '../../../shared/status'
 
-export type AuthLoginThunk = {
-	email: string
-	password: string
-}
-
 export type User = {
 	_id: string
 	fullName: string
@@ -16,6 +11,11 @@ export type User = {
 	token?: string
 }
 
+export type AuthLoginBody = {
+	email: string
+	password: string
+}
+
 type AuthError =
 	| {
 			msg: string
@@ -25,9 +25,9 @@ type AuthError =
 	  }
 	| { message: string }
 
-export type AuthData = null | AuthError | User
+export type AuthResponse = AuthError | User
 
 export interface IAuthState {
-	data: AuthData
+	data: AuthResponse | null
 	status: Status
 }

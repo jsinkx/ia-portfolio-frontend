@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-import axios from '../../../axios'
+import axios from '../../../shared/axios'
 
-import { IPostState, Post } from './types'
+import type { IPostState, Post } from './types'
 import Status from '../../../shared/status'
 
 // Thunks
@@ -12,7 +12,7 @@ export const fetchPosts = createAsyncThunk<Post[]>('posts/fetchPosts', async () 
 	return data
 })
 
-export const fetchRemovePost = createAsyncThunk<object, string>('posts/fetchRemovePost', async (id) => {
+export const fetchRemovePost = createAsyncThunk<void, string>('posts/fetchRemovePost', async (id) => {
 	axios.delete(`/posts/${id}`)
 })
 

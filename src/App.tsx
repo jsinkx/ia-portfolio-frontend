@@ -19,19 +19,18 @@ const App = () => {
 
 	React.useEffect(() => {
 		dispatch(fetchAuthMe())
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+	}, [dispatch])
 
 	return (
-		<div className='app'>
+		<div className="app">
 			<Header />
-			<div className='content'>
+			<div className="content">
 				<Routes>
-					<Route path='/*' element={<Home />} />
-					<Route path='login' element={<Login />} />
-					<Route path='posts/:id' element={<FullPost />} />
-					<Route path='posts/:id/edit' element={<AddPost />} />
-					<Route path='add-post' element={<AddPost />} />
+					<Route path="/*" element={<Home />} />
+					<Route path="login" element={<Login />} />
+					<Route path="posts/:id" element={<FullPost />} />
+					<Route path="posts/:id/edit" element={<AddPost />} />
+					<Route path="add-post" element={<AddPost />} />
 				</Routes>
 			</div>
 		</div>

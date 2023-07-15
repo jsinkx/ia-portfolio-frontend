@@ -29,7 +29,7 @@ const Images: React.FC<ImagesProps> = ({ images, deleteImage, isEditing }) => {
 						return (
 							<div key={imgAddress} className={classes.addImageBlock} style={styleImg}>
 								<IconButton onClick={() => deleteImage(index)}>
-									<DeleteIcon sx={{ fontSize: '120px' }} color='error' />
+									<DeleteIcon sx={{ fontSize: '120px' }} color="error" />
 								</IconButton>
 							</div>
 						)

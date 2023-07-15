@@ -70,9 +70,11 @@ const Post: React.FC<PostProps> = ({
 						<div className={classes.postImages}>
 							{images.map((imageAddress) => {
 								return (
-									<>
-										<img key={imageAddress} src={`${config.address}${imageAddress}`} alt='pic' />
-									</>
+									<img
+										key={imageAddress}
+										src={`${config.address}${imageAddress}`}
+										alt="pic"
+									/>
 								)
 							})}
 						</div>
@@ -88,11 +90,11 @@ const Post: React.FC<PostProps> = ({
 				{isEditable ? (
 					<div className={classes.editButtons}>
 						<NavLink to={`/posts/${id}/edit`}>
-							<IconButton color='primary'>
+							<IconButton color="primary">
 								<EditIcon />
 							</IconButton>
 						</NavLink>
-						<IconButton onClick={onClickRemove} color='error'>
+						<IconButton onClick={onClickRemove} color="error">
 							<DeleteIcon />
 						</IconButton>
 					</div>
