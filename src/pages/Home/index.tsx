@@ -12,12 +12,12 @@ import MainLayout from '../../layouts/MainLayout'
 
 import Post from '../../components/Post/Post'
 
+import Intro from './Intro'
+// import AboutMe from './AboutMe'
 import Contacts from './Contacts'
 import Socials from './Socials'
-import Intro from './Intro'
 
 import classes from '../../assets/styles/pages/Home/Home.module.scss'
-import AboutMe from './AboutMe'
 
 const Home: React.FC = () => {
 	const dispatch = useAppDispatch()
@@ -41,7 +41,7 @@ const Home: React.FC = () => {
 			<div className={classes.contentSection}>
 				<div className={classes.businessItems}>
 					<Intro />
-					<AboutMe />
+					{/* <AboutMe /> */}
 					<Contacts />
 					<Socials />
 				</div>
@@ -52,8 +52,13 @@ const Home: React.FC = () => {
 						isPostsLoading ? (
 							<Post key={index} isLoading={true} />
 						) : (
-							<Post key={index} id={obj._id} title={obj.title} isEditable={userData?._id === obj.user._id} />
-						)
+							<Post
+								key={index}
+								id={obj._id}
+								title={obj.title}
+								isEditable={userData?._id === obj.user._id}
+							/>
+						),
 					)}
 				</div>
 			</div>
