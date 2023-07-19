@@ -5,6 +5,8 @@ import { FieldValues, useForm } from 'react-hook-form'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 
+import notify from '../utils/toasty-notify'
+
 import useAppDispatch from '../hooks/useAppDispatch'
 import useAppSelector from '../hooks/useAppSelector'
 
@@ -37,13 +39,14 @@ const Login: React.FC = () => {
 		const data = await dispatch(fetchAuth(values as unknown as AuthLoginBody))
 
 		if (!data.payload) {
-			return alert('Не удалось авторизоваться')
+			notify('Не удалось авторизоваться', false)
+			return
 		}
 
 		if (typeof data.payload === 'object' && 'token' in data.payload) {
 			window.localStorage.setItem('token', data.payload.token as string)
 		} else {
-			alert('Не удалось авторизоваться')
+			notify('Не удалось авторизоваться', false)
 		}
 	}
 

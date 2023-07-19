@@ -12,7 +12,7 @@ export const postApi = api.injectEndpoints({
 				body: formData,
 			}),
 		}),
-		createPost: builder.mutation<ApiStatusResponse, CreatePostBody>({
+		createPost: builder.mutation<Post, CreatePostBody>({
 			query: (fields) => ({
 				url: '/posts',
 				method: 'POST',

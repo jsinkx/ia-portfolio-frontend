@@ -1,10 +1,12 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 
 import { Post as PostT } from '../redux/slices/post/types'
 
 import { useLazyGetPostQuery } from '../redux/services/endpoints/post/endpoint'
+
+import isErrorWithMessage from '../utils/is-error-with-message'
 
 import config from '../shared/config'
 
@@ -13,9 +15,12 @@ import MainLayout from '../layouts/MainLayout'
 import Post from '../components/Post/Post'
 
 import classes from '../assets/styles/pages/FullPost.module.scss'
+import notify from '../utils/toasty-notify'
 
 const FullPost: React.FC = () => {
 	const { id } = useParams()
+
+	const navigate = useNavigate()
 
 	const [data, setData] = React.useState<PostT>()
 	const [isLoading, setLoading] = React.useState(true)
@@ -31,11 +36,14 @@ const FullPost: React.FC = () => {
 					setLoading(false)
 				})
 				.catch((err) => {
-					// eslint-disable-next-line no-console
-					console.warn(err)
-					alert('Ошибка при получении поста')
+					const errMessage =
+						(isErrorWithMessage(err) && err?.data[0]?.msg) || 'Ошибка при получении поста!'
+
+					notify(errMessage, false)
+
+					navigate('/')
 				})
-	}, [getPost, id])
+	}, [getPost, id, navigate])
 
 	if (isLoading || !data?.title) {
 		return <Post isLoading={isLoading} isFullPost />

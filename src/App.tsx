@@ -5,8 +5,6 @@ import useAppDispatch from './hooks/useAppDispatch'
 
 import { fetchAuthMe } from './redux/slices/auth/auth'
 
-import Header from './components/Header/Header'
-
 import Login from './pages/Login'
 import Home from './pages/Home'
 import FullPost from './pages/FullPost'
@@ -23,16 +21,13 @@ const App = () => {
 
 	return (
 		<div className="app">
-			<Header />
-			<div className="content">
-				<Routes>
-					<Route path="/*" element={<Home />} />
-					<Route path="login" element={<Login />} />
-					<Route path="posts/:id" element={<FullPost />} />
-					<Route path="posts/:id/edit" element={<AddPost />} />
-					<Route path="add-post" element={<AddPost />} />
-				</Routes>
-			</div>
+			<Routes>
+				<Route path="/*" element={<Home />} />
+				<Route path="login" element={<Login />} />
+				<Route path="posts/:id" element={<FullPost />} />
+				<Route path="posts/:id/edit" element={<AddPost />} />
+				<Route path="add-post" element={<AddPost />} />
+			</Routes>
 		</div>
 	)
 }

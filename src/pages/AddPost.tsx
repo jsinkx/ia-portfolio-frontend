@@ -1,6 +1,6 @@
 import React from 'react'
 import SimpleMDE from 'react-simplemde-editor'
-import { useNavigate, Navigate, useParams } from 'react-router-dom'
+import { useNavigate, Navigate, useParams, Link } from 'react-router-dom'
 
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
@@ -11,21 +11,25 @@ import useAppSelector from '../hooks/useAppSelector'
 
 import { selectIsAuth } from '../redux/slices/auth/selectors'
 
+import notify from '../utils/toasty-notify'
+import isErrorWithMessage from '../utils/is-error-with-message'
+
 import config from '../shared/config'
 
 import MainLayout from '../layouts/MainLayout'
 
 import Images from '../components/Images/Images'
 
-import 'easymde/dist/easymde.min.css'
-import classes from '../assets/styles/pages/AddPost/AddPost.module.scss'
 import {
 	useCreatePostMutation,
 	useLazyGetPostQuery,
 	useUpdatePostMutation,
 	useUploadImageMutation,
 } from '../redux/services/endpoints/post/endpoint'
-import { CreatePostBody } from '../redux/services/endpoints/post/types'
+import type { CreatePostBody } from '../redux/services/endpoints/post/types'
+
+import 'easymde/dist/easymde.min.css'
+import classes from '../assets/styles/pages/AddPost/AddPost.module.scss'
 
 const AddPost: React.FC = () => {
 	const { id } = useParams()
@@ -39,24 +43,24 @@ const AddPost: React.FC = () => {
 	const [updatePost] = useUpdatePostMutation()
 	const [getPost] = useLazyGetPostQuery()
 
-	const [, setLoading] = React.useState(false)
-	const [text, setText] = React.useState('')
+	// Post attachments
 	const [title, setTitle] = React.useState('')
-	const [, setImage] = React.useState('')
+	const [text, setText] = React.useState('')
 	const [images, setImages] = React.useState<string[]>([])
 	const [backgroundImageUrl, setImageBackgroundUrl] = React.useState('')
 
-	const inputFileRef = React.useRef<HTMLInputElement>(null)
-	const inputAddImgRef = React.useRef<HTMLInputElement>(null)
+	const inputFileBackgroundImage = React.useRef<HTMLInputElement>(null)
+	const inputFileImage = React.useRef<HTMLInputElement>(null)
 
 	const isEditing = Boolean(id)
 
-	const setImageStates = (newImage: string) => {
-		setImage(newImage)
+	// Handling images
+
+	const addNewImage = (newImage: string) => {
 		setImages((p) => [...p, newImage])
 	}
 
-	const handleChangeImage = async (
+	const handleUploadImage = async (
 		event: React.ChangeEvent<HTMLInputElement>,
 		cb: (url: string) => void,
 	) => {
@@ -67,37 +71,33 @@ const AddPost: React.FC = () => {
 
 			formData.append('image', file)
 
-			// !
 			const { url } = await uploadImage(formData).unwrap()
 
 			// Calls after success upload image file with api
 			cb(url)
 		} catch (err) {
-			// eslint-disable-next-line no-console
-			console.warn(err)
+			const errMessage = (isErrorWithMessage(err) && err?.data[0]?.msg) || 'Ошибка при загрузке файла!'
 
-			alert('Ошибка при загрузке файла!')
+			notify(errMessage, false)
 		}
 	}
 
-	const deleteImage = (imgIndex: number) => {
+	const handleRemoveHeaderImage = () => {
+		setImageBackgroundUrl('')
+	}
+	const handleRemoveImage = (imgIndex: number) => {
 		const newImages = images.filter((_, index) => index !== imgIndex)
 
 		setImages(newImages)
 	}
 
-	const onClickRemoveImage = () => {
-		setImageBackgroundUrl('')
-	}
-
-	const onChange = React.useCallback((value: string) => {
+	// Markdown editor onchange handler
+	const handleChangeMDE = React.useCallback((value: string) => {
 		setText(value)
 	}, [])
 
 	const onSubmit = async () => {
 		try {
-			setLoading(true)
-
 			const fields: CreatePostBody = {
 				title,
 				backgroundImageUrl: backgroundImageUrl,
@@ -105,19 +105,22 @@ const AddPost: React.FC = () => {
 				text,
 			}
 
-			const data =
-				isEditing && id
-					? await updatePost({ id, fields }).unwrap()
-					: await createPost(fields).unwrap()
+			if (isEditing && id) {
+				await updatePost({ id, fields }).unwrap()
 
-			// @ts-ignore
-			const _id = isEditing ? id : data._id
+				navigate(`/posts/${id}`)
+			} else {
+				const data = await createPost(fields).unwrap()
 
-			navigate(`/posts/${_id}`)
+				navigate(`/posts/${data._id}`)
+			}
 		} catch (err) {
+			const errMessage = (isErrorWithMessage(err) && err?.data[0]?.msg) || 'Ошибка при создании поста!'
+
+			notify(errMessage, false)
+
 			// eslint-disable-next-line no-console
 			console.warn(err)
-			alert('Ошибка при создании поста!')
 		}
 	}
 
@@ -133,11 +136,14 @@ const AddPost: React.FC = () => {
 					setImageBackgroundUrl(data.backgroundImageUrl)
 				})
 				.catch((err) => {
-					// eslint-disable-next-line no-console
-					console.warn(err)
-					alert('Ошибка при получении поста')
+					const errMessage =
+						(isErrorWithMessage(err) && err?.data[0]?.msg) || 'Ошибка при получении поста!'
+
+					notify(errMessage, false)
+
+					navigate('/')
 				})
-	}, [getPost, id])
+	}, [getPost, id, navigate])
 
 	// MD Editor options
 	const options = React.useMemo(
@@ -155,7 +161,7 @@ const AddPost: React.FC = () => {
 		[],
 	)
 
-	const headerImageStyles = {
+	const backgroundImageStyles = {
 		width: '100%',
 		height: '200px',
 		backgroundImage: backgroundImageUrl ? `url(${config.address}${backgroundImageUrl})` : 'none',
@@ -165,24 +171,30 @@ const AddPost: React.FC = () => {
 		// userSelect: 'none',
 	}
 
-	if (!window.localStorage.getItem('token') && !isAuth) <Navigate to="/" />
+	if (!window.localStorage.getItem('token') || !isAuth) {
+		return <Navigate to="/" />
+	}
 
 	return (
 		<MainLayout title={isEditing ? 'Редактирование' : 'Создание'}>
-			<div style={headerImageStyles}></div>
+			<div style={backgroundImageStyles}></div>
 			<div className={classes.addPostPage}>
 				<input
-					ref={inputFileRef}
+					ref={inputFileBackgroundImage}
 					type="file"
-					onChange={(e) => handleChangeImage(e, setImageBackgroundUrl)}
+					onChange={(e) => handleUploadImage(e, setImageBackgroundUrl)}
 					hidden
 				/>
 				<div className={classes.actionButtonsImg}>
-					<Button onClick={() => inputFileRef.current?.click()} variant="outlined" size="large">
+					<Button
+						onClick={() => inputFileBackgroundImage.current?.click()}
+						variant="outlined"
+						size="large"
+					>
 						Загрузить превью
 					</Button>
 					{backgroundImageUrl ? (
-						<Button variant="contained" color="error" onClick={onClickRemoveImage}>
+						<Button variant="contained" color="error" onClick={handleRemoveHeaderImage}>
 							Удалить
 						</Button>
 					) : (
@@ -202,37 +214,37 @@ const AddPost: React.FC = () => {
 				<SimpleMDE
 					className={classes.editor}
 					value={text}
-					onChange={onChange}
+					onChange={handleChangeMDE}
 					options={options as EasyMDE.Options}
 				/>
 				<h2> Добавить изображения </h2>
 				<div className={classes.blockAddImages}>
 					<input
-						ref={inputAddImgRef}
+						ref={inputFileImage}
 						type="file"
-						onChange={(e) => handleChangeImage(e, setImageStates)}
+						onChange={(e) => handleUploadImage(e, addNewImage)}
 						hidden
 					/>
 					<div
 						className={classes.addImageBlock}
 						title="Добавить изображение"
-						onClick={() => inputAddImgRef.current?.click()}
+						onClick={() => inputFileImage.current?.click()}
 					>
 						<IconButton>
 							<AddIcon sx={{ fontSize: '120px' }} />
 						</IconButton>
 					</div>
-					<Images images={images} deleteImage={deleteImage} isEditing />
+					<Images images={images} deleteImage={handleRemoveImage} isEditing />
 				</div>
 				<div className={classes.buttons}>
 					<Button onClick={onSubmit} size="large" variant="contained">
 						{isEditing ? 'Сохранить' : 'Опубликовать'}
 					</Button>
-					<a href="/">
+					<Link to="/">
 						<Button size="large" color="error">
 							Отмена
 						</Button>
-					</a>
+					</Link>
 				</div>
 			</div>
 		</MainLayout>

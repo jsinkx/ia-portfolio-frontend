@@ -4,6 +4,11 @@ import { Helmet } from 'react-helmet'
 import defaultKeywords from '../shared/react-helmet-keywords'
 import config from '../shared/config'
 
+import Header from '../components/Header/Header'
+import Notifications from '../components/Notifications'
+
+import 'react-toastify/dist/ReactToastify.css'
+
 type MainLayoutProps = {
 	title?: string
 	description?: string
@@ -36,7 +41,9 @@ const MainLayout: React.FC<MainLayoutProps> = ({
 				<meta itemProp="image" content={_image} />
 				<link rel="image_src" href={_image} />
 			</Helmet>
-			{children}
+			<Notifications />
+			<Header />
+			<div className="content">{children}</div>
 		</>
 	)
 }
