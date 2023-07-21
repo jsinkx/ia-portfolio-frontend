@@ -19,7 +19,7 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({ children }) => {
 					<BurgerIcon sx={{ fontSize: 40 }} />
 				</IconButton>
 			</div>
-			<StyledBurgerMenu isOpen={isOpen} onClick={() => setIsOpen((p) => !p)}>
+			<StyledBurgerMenu $isOpen={isOpen} onClick={() => setIsOpen((p) => !p)}>
 				<p> Закрыть </p>
 				{children}
 			</StyledBurgerMenu>
