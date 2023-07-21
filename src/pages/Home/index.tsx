@@ -10,7 +10,7 @@ import { fetchPosts } from '../../redux/slices/post/slice'
 
 import MainLayout from '../../layouts/MainLayout'
 
-import Post from '../../components/Post/Post'
+import Post from '../../components/Post'
 
 import Intro from './Intro'
 // import AboutMe from './AboutMe'

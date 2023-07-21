@@ -1,10 +1,17 @@
-.projNav {
-	margin: 5px 0 5px 0;
+import styled from 'styled-components'
+import { NavLink } from 'react-router-dom'
+
+export const StyledMiniPost = styled(NavLink)`
+	width: 100%;
 	color: black;
 	text-decoration: none;
 	font-family: 'Times New Roman', Times, serif;
 	font-size: 50px;
 	font-weight: 900;
+
+	:hover {
+		background-color: #ebff00;
+	}
 
 	.project {
 		display: flex;
@@ -24,19 +31,22 @@
 		transition: all 0.3s;
 	}
 
-	:hover {
-		background-color: #ebff00;
+	a {
+		width: 100%;
+		outline: none;
+		text-decoration: none;
 	}
-}
+`
 
-.postBox {
+export const StyledBigPost = styled.div`
 	width: 80%;
 	margin: 0 auto;
+
 	h2 {
 		font-size: 2em;
 	}
 
-	.content {
+	.post__content {
 		width: 100%;
 		margin: 0 auto;
 		text-align: left;
@@ -54,4 +64,4 @@
 			}
 		}
 	}
-}
+`

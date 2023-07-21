@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet'
 import defaultKeywords from '../shared/react-helmet-keywords'
 import config from '../shared/config'
 
-import Header from '../components/Header/Header'
+import Header from '../components/Header'
 import Notifications from '../components/Notifications'
 
 import 'react-toastify/dist/ReactToastify.css'

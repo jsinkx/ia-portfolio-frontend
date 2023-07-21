@@ -18,7 +18,7 @@ import config from '../shared/config'
 
 import MainLayout from '../layouts/MainLayout'
 
-import Images from '../components/Images/Images'
+import Images from '../components/Images'
 
 import {
 	useCreatePostMutation,

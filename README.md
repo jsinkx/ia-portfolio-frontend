@@ -2,7 +2,7 @@
 
 ---
 
-## [Available production](http://ilyaalenichev.ru/)
+## [Deployed](https://ia-portfolio-app.vercel.app/)
 
 ## Installation
 
@@ -13,7 +13,7 @@
 4. Install all dependencies (see below)
 
 ```sh
-cd IA-portfolio-frontend
+cd ia-portfolio-frontend
 yarn install
 # or
 npm install
@@ -35,6 +35,7 @@ npm install
 -   react-helmet
 -   react-markdown
 -   react-simplemde-editor
+-   styled-components
 -   Axios
 -   Redux Toolkit Query
 -   SASS

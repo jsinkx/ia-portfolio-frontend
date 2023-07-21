@@ -12,7 +12,7 @@ import config from '../shared/config'
 
 import MainLayout from '../layouts/MainLayout'
 
-import Post from '../components/Post/Post'
+import Post from '../components/Post'
 
 import classes from '../assets/styles/pages/FullPost.module.scss'
 import notify from '../utils/toasty-notify'
