@@ -21,7 +21,7 @@ export const StyledMiniPost = styled(NavLink)`
 		transition: all 0.3s;
 	}
 
-	.projectBgr {
+	.project--burger {
 		display: flex;
 		justify-content: center;
 		width: 100%;
@@ -29,12 +29,7 @@ export const StyledMiniPost = styled(NavLink)`
 		align-items: center;
 		font-size: 1.2em;
 		transition: all 0.3s;
-	}
-
-	a {
-		width: 100%;
-		outline: none;
-		text-decoration: none;
+		padding: 30px;
 	}
 `
 

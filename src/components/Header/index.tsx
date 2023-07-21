@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { Button, IconButton } from '@mui/material'
 import AddIcon from '@mui/icons-material/AddCircleOutline'
@@ -14,58 +14,81 @@ import { fetchPosts } from '../../redux/slices/post/slice'
 import BurgerMenu from '../BurgerMenu'
 import Posts from './Posts'
 import StyledHeader from './style'
+import ConfirmationWindow from '../ConfirmationWindow'
 
 const Header = () => {
 	const dispatch = useAppDispatch()
 
 	const isAuth = useAppSelector(selectIsAuth)
 
+	const [isOpen, setIsOpen] = React.useState(false)
+
 	React.useEffect(() => {
 		dispatch(fetchPosts())
 	}, [dispatch])
 
-	const onClickLogout = () => {
-		if (window.confirm('Вы действительно хотите выйти ?')) {
-			dispatch(logout())
-			window.localStorage.removeItem('token')
-		}
+	const handleClose = () => {
+		setIsOpen(false)
+	}
+
+	const handleAccept = () => {
+		handleClose()
+		dispatch(logout())
+
+		window.localStorage.removeItem('token')
 	}
 
 	return (
-		<StyledHeader>
-			<nav>
-				<NavLink to="/">
-					<div className="headerLogoBox">
-						<h3>и</h3>
+		<>
+			{isOpen && (
+				<ConfirmationWindow
+					title="Выход с аккаунта"
+					acceptText="Выйти"
+					onAccept={handleAccept}
+					onClose={handleClose}
+				>
+					Вы действительно хотите выйти ?
+				</ConfirmationWindow>
+			)}
+			<StyledHeader>
+				<nav>
+					<Link to="/">
+						<div className="headerLogoBox">
+							<h3>и</h3>
+						</div>
+					</Link>
+					<div className="NavActionBlock">
+						<ul className="header__action__buttons">
+							<li>
+								<BurgerMenu>
+									<Posts />
+								</BurgerMenu>
+							</li>
+							{isAuth ? (
+								<>
+									<li>
+										<Link to="/add-post">
+											<IconButton color="primary">
+												<AddIcon sx={{ fontSize: '40px' }} />
+											</IconButton>
+										</Link>
+									</li>
+									<li>
+										<Button
+											onClick={() => setIsOpen(true)}
+											variant="contained"
+											color="error"
+										>
+											Выйти
+										</Button>
+									</li>
+								</>
+							) : null}
+						</ul>
 					</div>
-				</NavLink>
-				<div className="NavActionBlock">
-					<ul className="header__action__buttons">
-						<li>
-							<BurgerMenu>
-								<Posts />
-							</BurgerMenu>
-						</li>
-						{isAuth ? (
-							<>
-								<li>
-									<NavLink to="/add-post">
-										<IconButton color="primary">
-											<AddIcon sx={{ fontSize: '40px' }} />
-										</IconButton>
-									</NavLink>
-								</li>
-								<li>
-									<Button onClick={onClickLogout} variant="contained" color="error">
-										Выйти
-									</Button>
-								</li>
-							</>
-						) : null}
-					</ul>
-				</div>
-			</nav>
-		</StyledHeader>
+				</nav>
+			</StyledHeader>
+		</>
 	)
 }
 

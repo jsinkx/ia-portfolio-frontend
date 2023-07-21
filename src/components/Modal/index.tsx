@@ -55,7 +55,7 @@ const Modal: React.FC<ModalProps> = ({ title, children, onClose }) => {
 			window.removeEventListener('keydown', handleEscapeClick)
 
 			document.body.style.overflow = 'unset'
-			document.body.style.userSelect = 'all'
+			document.body.style.userSelect = 'text'
 		}
 	}, [onClose])
 

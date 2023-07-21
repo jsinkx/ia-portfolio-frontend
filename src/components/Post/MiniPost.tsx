@@ -43,6 +43,7 @@ const MiniPost: React.FC<MiniPostProps> = ({ title, id, isBurger, isEditable }) 
 
 	const handleEditClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault()
+
 		navigate(`/posts/${id}/edit`)
 	}
 
@@ -54,13 +55,12 @@ const MiniPost: React.FC<MiniPostProps> = ({ title, id, isBurger, isEditable }) 
 				</ConfirmationWindow>
 			)}
 			<StyledMiniPost to={`/posts/${id}`} className="projNav">
-				<div className={isBurger ? 'projectBgr' : 'project'}>
+				<div className={isBurger ? 'project--burger' : 'project'}>
 					{isEditable ? (
 						<div className="editButtons">
 							<IconButton onClick={handleEditClick} color="primary">
 								<EditIcon />
 							</IconButton>
-
 							<IconButton onClick={onClickRemove} color="error">
 								<DeleteIcon />
 							</IconButton>

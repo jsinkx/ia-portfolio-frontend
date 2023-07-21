@@ -20,10 +20,10 @@ const StyledModalWindow = styled.div`
 		margin: 25vh auto;
 		padding: 2vw;
 		padding-top: 0.1vw;
-		padding-bottom: 3vw;
+		padding-bottom: 1.8vw;
 		text-align: center;
-		background-color: #d3d3d3;
-		user-select: all;
+		background-color: #f3f3f3;
+		user-select: text;
 
 		header {
 			display: flex;
