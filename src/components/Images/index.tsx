@@ -16,7 +16,7 @@ const Images: React.FC<ImagesProps> = ({ images, deleteImage, isEditing }) => {
 		<>
 			{isEditing
 				? images.map((imgAddress: string, index: number) => (
-						<StyledImages key={imgAddress} className="addImageBlock" imgAddress={imgAddress}>
+						<StyledImages key={imgAddress} className="addImageBlock" $imgAddress={imgAddress}>
 							<IconButton sx={{ marginTop: '50%' }} onClick={() => deleteImage(index)}>
 								<DeleteIcon sx={{ fontSize: '120px' }} color="error" />
 							</IconButton>

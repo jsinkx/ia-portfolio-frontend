@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import config from '../../shared/config'
 
-const StyledImages = styled.div<{ imgAddress: string }>`
+const StyledImages = styled.div<{ $imgAddress: string }>`
 	width: 180px;
 	height: 300px;
 	margin: 20px 0;
@@ -11,7 +11,7 @@ const StyledImages = styled.div<{ imgAddress: string }>`
 	border-radius: 15px;
 	align-items: center;
 	transition: all 0.3s;
-	background-image: url(${config.address}${({ imgAddress }) => imgAddress});
+	background-image: url(${config.address}${({ $imgAddress }) => $imgAddress});
 	background-repeat: 'no-repeat';
 	background-position: 'center';
 	background-size: 'cover';
