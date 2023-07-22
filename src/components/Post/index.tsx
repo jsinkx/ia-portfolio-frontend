@@ -34,4 +34,4 @@ const Post: React.FC<PostProps> = ({
 	)
 }
 
-export default Post
+export default React.memo(Post)
