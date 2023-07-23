@@ -3,7 +3,6 @@ import React from 'react'
 import useAppDispatch from '../../hooks/useAppDispatch'
 import useAppSelector from '../../hooks/useAppSelector'
 
-import { User } from '../../redux/slices/auth/types'
 import { selectAuthData } from '../../redux/slices/auth/selectors'
 import { selectPosts } from '../../redux/slices/post/selectors'
 import { fetchPosts } from '../../redux/slices/post/slice'
@@ -17,11 +16,12 @@ import Socials from './Socials'
 import Post from '../../components/Post'
 
 import classes from '../../assets/styles/pages/Home/Home.module.scss'
+import isUser from '../../utils/is-user'
 
 const Home: React.FC = () => {
 	const dispatch = useAppDispatch()
 
-	const userData = useAppSelector(selectAuthData) as unknown as User
+	const userData = useAppSelector(selectAuthData)
 	const { items, status } = useAppSelector(selectPosts)
 
 	const isPostsLoading = status === 'loading'
@@ -54,7 +54,7 @@ const Home: React.FC = () => {
 								key={index}
 								id={post._id}
 								title={post.title}
-								isEditable={userData._id === post.user._id}
+								isEditable={(isUser(userData) && userData?._id) === post.user._id}
 							/>
 						),
 					)}
