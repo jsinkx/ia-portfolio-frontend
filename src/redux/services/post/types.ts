@@ -1,4 +1,4 @@
-import { Post } from '../../../slices/post/types'
+import { Post } from '../../slices/post/types'
 
 export type CreatePostBody = Pick<Post, 'title' | 'text' | 'backgroundImageUrl' | 'images'>
 

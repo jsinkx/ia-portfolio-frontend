@@ -11,12 +11,12 @@ import useAppDispatch from '../hooks/useAppDispatch'
 import useAppSelector from '../hooks/useAppSelector'
 
 import { selectIsAuth } from '../redux/slices/auth/selectors'
-import { fetchAuth } from '../redux/slices/auth/auth'
+import { fetchAuth } from '../redux/slices/auth/slice'
+import { AuthLoginBody } from '../redux/slices/auth/types'
 
 import MainLayout from '../layouts/MainLayout'
 
 import classes from '../assets/styles/pages/Login.module.scss'
-import { AuthLoginBody } from '../redux/slices/auth/types'
 
 const Login: React.FC = () => {
 	const dispatch = useAppDispatch()

@@ -1,5 +1,8 @@
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
+import { SERVER_URL } from '../../shared/constants'
+
+const randomHexColor = () => '#' + Math.floor(Math.random() * 16777215).toString(16)
 
 export const StyledMiniPost = styled(NavLink)`
 	width: 100%;
@@ -13,7 +16,7 @@ export const StyledMiniPost = styled(NavLink)`
 		background-color: #ebff00;
 	}
 
-	.project {
+	.post {
 		display: flex;
 		justify-content: right;
 		width: 99%;
@@ -21,7 +24,7 @@ export const StyledMiniPost = styled(NavLink)`
 		transition: all 0.3s;
 	}
 
-	.project--burger {
+	.post--burger {
 		display: flex;
 		justify-content: center;
 		width: 100%;
@@ -33,11 +36,27 @@ export const StyledMiniPost = styled(NavLink)`
 	}
 `
 
+export const StyledPostHeader = styled.div<{ $backgroundImageUrl?: string; $isLoading?: boolean }>`
+	margin-top: -150px;
+	width: 100%;
+	height: 200px;
+	${({ $isLoading, $backgroundImageUrl }) =>
+		$isLoading
+			? ''
+			: `
+	background-image: url(${SERVER_URL + $backgroundImageUrl})`};
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	background-color: ${randomHexColor()};
+	user-select: none;
+`
+
 export const StyledBigPost = styled.div`
 	width: 80%;
 	margin: 0 auto;
 
-	h2 {
+	.post__title {
 		font-size: 2em;
 	}
 
@@ -46,7 +65,7 @@ export const StyledBigPost = styled.div`
 		margin: 0 auto;
 		text-align: left;
 
-		.postImages {
+		.post__images {
 			display: flex;
 			justify-content: flex-start;
 			flex-wrap: wrap;

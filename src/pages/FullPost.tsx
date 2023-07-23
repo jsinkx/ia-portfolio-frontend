@@ -4,25 +4,23 @@ import ReactMarkdown from 'react-markdown'
 
 import { Post as PostT } from '../redux/slices/post/types'
 
-import { useLazyGetPostQuery } from '../redux/services/endpoints/post/endpoint'
+import { useLazyGetPostQuery } from '../redux/services/post/endpoints'
 
 import isErrorWithMessage from '../utils/is-error-with-message'
-
-import config from '../shared/config'
+import notify from '../utils/toasty-notify'
 
 import MainLayout from '../layouts/MainLayout'
 
 import Post from '../components/Post'
 
 import classes from '../assets/styles/pages/FullPost.module.scss'
-import notify from '../utils/toasty-notify'
 
 const FullPost: React.FC = () => {
 	const { id } = useParams()
 
 	const navigate = useNavigate()
 
-	const [data, setData] = React.useState<PostT>()
+	const [data, setData] = React.useState<PostT>({} as PostT)
 	const [isLoading, setLoading] = React.useState(true)
 
 	const [getPost] = useLazyGetPostQuery()
@@ -45,23 +43,18 @@ const FullPost: React.FC = () => {
 				})
 	}, [getPost, id, navigate])
 
-	if (isLoading || !data?.title) {
-		return <Post isLoading={isLoading} isFullPost />
-	}
-
 	return (
-		<MainLayout title={data?.title} image={`${config.address}${data?.backgroundImageUrl}`}>
+		<MainLayout title={data.title} image={data.backgroundImageUrl}>
 			<div className={classes.fullPostPage}>
 				<Post
-					id={data?._id as unknown as string}
-					title={data?.title as unknown as string}
-					images={data?.images as unknown as string[]}
-					backgroundImageUrl={
-						data?.backgroundImageUrl ? `${config.address}${data?.backgroundImageUrl}` : ''
-					}
+					id={data._id}
+					title={data.title}
+					images={data.images}
+					backgroundImageUrl={data.backgroundImageUrl}
+					isLoading={isLoading}
 					isFullPost
 				>
-					<ReactMarkdown>{data?.text as unknown as string}</ReactMarkdown>
+					<ReactMarkdown>{data.text}</ReactMarkdown>
 				</Post>
 			</div>
 		</MainLayout>

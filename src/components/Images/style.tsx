@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import config from '../../shared/config'
+import { SERVER_URL } from '../../shared/constants'
 
 const StyledImages = styled.div<{ $imgAddress: string }>`
 	width: 180px;
@@ -11,7 +11,7 @@ const StyledImages = styled.div<{ $imgAddress: string }>`
 	border-radius: 15px;
 	align-items: center;
 	transition: all 0.3s;
-	background-image: url(${config.address}${({ $imgAddress }) => $imgAddress});
+	background-image: url(${({ $imgAddress }) => SERVER_URL + $imgAddress});
 	background-repeat: 'no-repeat';
 	background-position: 'center';
 	background-size: 'cover';

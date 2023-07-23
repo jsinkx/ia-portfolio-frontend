@@ -10,12 +10,11 @@ import { fetchPosts } from '../../redux/slices/post/slice'
 
 import MainLayout from '../../layouts/MainLayout'
 
-import Post from '../../components/Post'
-
 import Intro from './Intro'
 // import AboutMe from './AboutMe'
 import Contacts from './Contacts'
 import Socials from './Socials'
+import Post from '../../components/Post'
 
 import classes from '../../assets/styles/pages/Home/Home.module.scss'
 
@@ -47,15 +46,15 @@ const Home: React.FC = () => {
 
 				<div className={classes.workSection}>
 					<p className={classes.pTitle}> МОИ ДОСТИЖЕНИЯ </p>
-					{(isPostsLoading ? [...Array(2)] : items).map((obj, index) =>
+					{(isPostsLoading ? [...Array(4)] : items).map((post, index) =>
 						isPostsLoading ? (
 							<Post key={index} isLoading={true} />
 						) : (
 							<Post
 								key={index}
-								id={obj._id}
-								title={obj.title}
-								isEditable={userData?._id === obj.user._id}
+								id={post._id}
+								title={post.title}
+								isEditable={userData._id === post.user._id}
 							/>
 						),
 					)}

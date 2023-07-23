@@ -11,6 +11,7 @@ type ImagesProps = {
 	isEditing: boolean
 }
 
+// Todo: Integrate this component in page, where using
 const Images: React.FC<ImagesProps> = ({ images, deleteImage, isEditing }) => {
 	return (
 		<>

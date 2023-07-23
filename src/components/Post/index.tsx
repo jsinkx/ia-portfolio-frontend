@@ -6,13 +6,13 @@ import MiniPost from './MiniPost'
 type PostProps = {
 	id?: string
 	title?: string
-	children?: React.ReactNode
 	backgroundImageUrl?: string
 	images?: string[]
 	isLoading?: boolean
 	isEditable?: boolean
 	isBurger?: boolean
 	isFullPost?: boolean
+	children?: React.ReactNode
 }
 
 const Post: React.FC<PostProps> = ({
@@ -24,13 +24,14 @@ const Post: React.FC<PostProps> = ({
 	isEditable,
 	isBurger,
 	isFullPost,
+	isLoading,
 }) => {
 	return isFullPost ? (
-		<BigPost title={title} images={images} backgroundImageUrl={backgroundImageUrl}>
+		<BigPost title={title} images={images} backgroundImageUrl={backgroundImageUrl} isLoading={isLoading}>
 			{children}
 		</BigPost>
 	) : (
-		<MiniPost title={title} id={id} isBurger={isBurger} isEditable={isEditable} />
+		<MiniPost title={title} id={id} isBurger={isBurger} isEditable={isEditable} isLoading={isLoading} />
 	)
 }
 

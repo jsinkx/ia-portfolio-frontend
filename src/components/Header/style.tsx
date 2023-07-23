@@ -10,7 +10,7 @@ const StyledHeader = styled.header`
 		justify-content: space-between;
 		align-items: center;
 
-		.headerLogoBox {
+		.header__nav__logo {
 			width: 100px;
 			height: 100px;
 			margin: 17px;
@@ -41,34 +41,32 @@ const StyledHeader = styled.header`
 			}
 		}
 
-		.NavActionBlock {
-			.header__action__buttons {
-				display: flex;
-				justify-content: right;
-				list-style: none;
-				align-items: center;
+		.header__nav__buttons {
+			display: flex;
+			justify-content: right;
+			list-style: none;
+			align-items: center;
 
-				li {
-					margin-left: 15px;
-					margin-right: 25px;
+			li {
+				margin-left: 15px;
+				margin-right: 25px;
 
-					a {
-						text-decoration: none;
-						font-size: 2em;
+				a {
+					text-decoration: none;
+					font-size: 2em;
 
-						button {
-							margin-bottom: 22%;
-							padding: 0;
-						}
+					button {
+						margin-bottom: 22%;
+						padding: 0;
 					}
 				}
 			}
+		}
 
-			@media only screen and (min-width: 290px) and (max-width: 1100px) {
-				ul {
-					li {
-						margin: 0 3px !important;
-					}
+		@media only screen and (min-width: 290px) and (max-width: 1100px) {
+			ul {
+				li {
+					margin: 0 3px !important;
 				}
 			}
 		}

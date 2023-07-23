@@ -1,13 +1,13 @@
 import axios from 'axios'
 
-import config from './config'
+import { SERVER_URL } from './constants'
 
-const instance = axios.create({ baseURL: config.address })
+const instance = axios.create({ baseURL: SERVER_URL })
 
-instance.interceptors.request.use((_config) => {
-	_config.headers.Authorization = window.localStorage.getItem('token')
+instance.interceptors.request.use((config) => {
+	config.headers.Authorization = window.localStorage.getItem('token')
 
-	return _config
+	return config
 })
 
 export default instance

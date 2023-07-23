@@ -1,4 +1,6 @@
-@import './variables/index.scss';
+import { createGlobalStyle } from 'styled-components'
+
+const GlobalStyle = createGlobalStyle`
 
 html {
 	height: 100%;
@@ -27,17 +29,9 @@ html {
 		code {
 			font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 		}
-
-		.app {
-			min-height: 100%;
-
-			.content {
-				min-width: 100%;
-				min-height: 100%;
-				position: absolute;
-				top: 0;
-				z-index: 99;
-			}
-		}
 	}
 }
+
+`
+
+export default GlobalStyle

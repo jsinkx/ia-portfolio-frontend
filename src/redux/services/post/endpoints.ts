@@ -1,7 +1,7 @@
-import api from '../../api'
+import api from '../api'
 import type { CreatePostBody, UpdatePostBody } from './types'
-import type { Post } from '../../../slices/post/types'
-import type { ApiStatusResponse } from '../../../types'
+import type { Post } from '../../slices/post/types'
+import type { ApiStatusResponse } from '../../types'
 
 export const postApi = api.injectEndpoints({
 	endpoints: (builder) => ({

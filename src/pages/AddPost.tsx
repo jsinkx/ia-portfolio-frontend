@@ -9,24 +9,27 @@ import AddIcon from '@mui/icons-material/Add'
 
 import useAppSelector from '../hooks/useAppSelector'
 
-import { selectIsAuth } from '../redux/slices/auth/selectors'
+import { selectAuthStatus, selectIsAuth } from '../redux/slices/auth/selectors'
 
 import notify from '../utils/toasty-notify'
 import isErrorWithMessage from '../utils/is-error-with-message'
 
-import config from '../shared/config'
+import Status from '../shared/status'
 
 import MainLayout from '../layouts/MainLayout'
 
+import Loading from '../components/Loading'
 import Images from '../components/Images'
+
+import { SERVER_URL } from '../shared/constants'
 
 import {
 	useCreatePostMutation,
 	useLazyGetPostQuery,
 	useUpdatePostMutation,
 	useUploadImageMutation,
-} from '../redux/services/endpoints/post/endpoint'
-import type { CreatePostBody } from '../redux/services/endpoints/post/types'
+} from '../redux/services/post/endpoints'
+import type { CreatePostBody } from '../redux/services/post/types'
 
 import 'easymde/dist/easymde.min.css'
 import classes from '../assets/styles/pages/AddPost/AddPost.module.scss'
@@ -36,6 +39,7 @@ const AddPost: React.FC = () => {
 
 	const navigate = useNavigate()
 
+	const authStatus = useAppSelector(selectAuthStatus)
 	const isAuth = useAppSelector(selectIsAuth)
 
 	const [uploadImage] = useUploadImageMutation()
@@ -164,16 +168,16 @@ const AddPost: React.FC = () => {
 	const backgroundImageStyles = {
 		width: '100%',
 		height: '200px',
-		backgroundImage: backgroundImageUrl ? `url(${config.address}${backgroundImageUrl})` : 'none',
+		backgroundImage: backgroundImageUrl ? `url(${SERVER_URL + backgroundImageUrl})` : 'none',
 		backgroundRepeat: 'no-repeat',
 		backgroundPosition: 'center',
 		backgroundSize: 'cover',
 		// userSelect: 'none',
 	}
 
-	if (!window.localStorage.getItem('token') || !isAuth) {
-		return <Navigate to="/" />
-	}
+	if (authStatus === Status.LOADING) return <Loading />
+
+	if (!window.localStorage.getItem('token') || !isAuth) return <Navigate to={`/posts/${id}`} />
 
 	return (
 		<MainLayout title={isEditing ? 'Редактирование' : 'Создание'}>

@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react'
 
-import config from '../../shared/config'
+import { SERVER_URL } from '../../shared/constants'
 
 const baseQuery = fetchBaseQuery({
-	baseUrl: config.address,
+	baseUrl: SERVER_URL,
 	prepareHeaders(headers) {
 		const token = localStorage.getItem('token')
 

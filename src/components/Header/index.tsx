@@ -8,7 +8,7 @@ import useAppSelector from '../../hooks/useAppSelector'
 import useAppDispatch from '../../hooks/useAppDispatch'
 
 import { selectIsAuth } from '../../redux/slices/auth/selectors'
-import { logout } from '../../redux/slices/auth/auth'
+import { logout } from '../../redux/slices/auth/slice'
 import { fetchPosts } from '../../redux/slices/post/slice'
 
 import BurgerMenu from '../BurgerMenu'
@@ -53,39 +53,33 @@ const Header = () => {
 			<StyledHeader>
 				<nav>
 					<Link to="/">
-						<div className="headerLogoBox">
+						<div className="header__nav__logo">
 							<h3>и</h3>
 						</div>
 					</Link>
-					<div className="NavActionBlock">
-						<ul className="header__action__buttons">
-							<li>
-								<BurgerMenu>
-									<Posts />
-								</BurgerMenu>
-							</li>
-							{isAuth ? (
-								<>
-									<li>
-										<Link to="/add-post">
-											<IconButton color="primary">
-												<AddIcon sx={{ fontSize: '40px' }} />
-											</IconButton>
-										</Link>
-									</li>
-									<li>
-										<Button
-											onClick={() => setIsOpen(true)}
-											variant="contained"
-											color="error"
-										>
-											Выйти
-										</Button>
-									</li>
-								</>
-							) : null}
-						</ul>
-					</div>
+					<ul className="header__nav__buttons">
+						<li>
+							<BurgerMenu>
+								<Posts />
+							</BurgerMenu>
+						</li>
+						{isAuth ? (
+							<>
+								<li>
+									<Link to="/add-post">
+										<IconButton color="primary">
+											<AddIcon sx={{ fontSize: '40px' }} />
+										</IconButton>
+									</Link>
+								</li>
+								<li>
+									<Button onClick={() => setIsOpen(true)} variant="contained" color="error">
+										Выйти
+									</Button>
+								</li>
+							</>
+						) : null}
+					</ul>
 				</nav>
 			</StyledHeader>
 		</>
