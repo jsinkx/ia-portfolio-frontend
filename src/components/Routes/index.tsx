@@ -48,7 +48,7 @@ const Routes: React.FC = () => {
 
 	// Try auth by token
 	React.useEffect(() => {
-		dispatch(fetchAuthMe())
+		window.localStorage.getItem('token') && dispatch(fetchAuthMe())
 	}, [dispatch])
 
 	return (
