@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 
-import { DEFAULT_KEYWORDS, ICON_LOGO_URL, SERVER_URL } from '../../shared/constants'
+import { CLIENT_URL, DEFAULT_KEYWORDS, ICON_LOGO_URL, SERVER_URL } from '../../shared/constants'
 
 import Header from '../../components/Header'
 import Notifications from '../../components/Notifications'
@@ -26,7 +26,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
 }) => {
 	const _title = `${(title && title.concat(' - ')) || ''}Илья Аленичев`
 	const _description = `Сайт-портфолио индивидуальных достижений Ильи Аленичева. ${description}`
-	const _image = SERVER_URL + image || ICON_LOGO_URL
+	const _image = image ? SERVER_URL + image : ICON_LOGO_URL
 
 	return (
 		<>
@@ -34,12 +34,15 @@ const MainLayout: React.FC<MainLayoutProps> = ({
 				<title> {_title} </title>
 				<meta name="description" content={_description} />
 				<meta name="keywords" content={[...DEFAULT_KEYWORDS, ...keywords].join(', ')} />
+				<meta property="og:type" content="website" />
 				<meta property="og:title" content={title || _title} />
+				<meta property="og:url" content={CLIENT_URL} />
 				<meta property="og:site_name" content="Илья Аленичев" />
 				<meta property="og:description" content={_description} />
 				<meta property="og:image" content={_image} />
 				<meta itemProp="image" content={_image} />
 				<link rel="image_src" href={_image} />
+				<link rel="canonical" href={CLIENT_URL} />
 			</Helmet>
 			<Notifications />
 			<Header />
