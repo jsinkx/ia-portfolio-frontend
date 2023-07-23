@@ -1,0 +1,10 @@
+node_modules
+npm-debug.log
+build
+.DS_Store
+debug
+build-iris
+build-api
+build-hyperion
+package-lock.json
+.vscode
