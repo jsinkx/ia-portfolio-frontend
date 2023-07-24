@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyleTags = createGlobalStyle`
 
 html {
 	height: 100%;
@@ -34,4 +34,4 @@ html {
 
 `
 
-export default GlobalStyle
+export default GlobalStyleTags

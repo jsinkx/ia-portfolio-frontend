@@ -2,18 +2,17 @@ import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 
-import { Post as PostT } from '../redux/slices/post/types'
+import { Post as PostT } from '../../redux/slices/post/types'
 
-import { useLazyGetPostQuery } from '../redux/services/post/endpoints'
+import { useLazyGetPostQuery } from '../../redux/services/post/endpoints'
 
-import isErrorWithMessage from '../utils/is-error-with-message'
-import notify from '../utils/toasty-notify'
+import isErrorWithMessage from '../../utils/is-error-with-message'
+import notify from '../../utils/toasty-notify'
 
-import MainLayout from '../layouts/MainLayout'
+import MainLayout from '../../layouts/MainLayout'
 
-import Post from '../components/Post'
-
-import classes from '../assets/styles/pages/FullPost.module.scss'
+import Post from '../../components/Post'
+import StyledFullPost from './style'
 
 const FullPost: React.FC = () => {
 	const { id } = useParams()
@@ -45,7 +44,7 @@ const FullPost: React.FC = () => {
 
 	return (
 		<MainLayout title={data.title} image={data.backgroundImageUrl}>
-			<div className={classes.fullPostPage}>
+			<StyledFullPost>
 				<Post
 					id={data._id}
 					title={data.title}
@@ -56,7 +55,7 @@ const FullPost: React.FC = () => {
 				>
 					<ReactMarkdown>{data.text}</ReactMarkdown>
 				</Post>
-			</div>
+			</StyledFullPost>
 		</MainLayout>
 	)
 }

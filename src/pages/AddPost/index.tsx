@@ -7,32 +7,30 @@ import Button from '@mui/material/Button'
 import { IconButton } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 
-import useAppSelector from '../hooks/useAppSelector'
+import useAppSelector from '../../hooks/useAppSelector'
 
-import { selectAuthStatus, selectIsAuth } from '../redux/slices/auth/selectors'
+import { selectAuthStatus, selectIsAuth } from '../../redux/slices/auth/selectors'
 
-import notify from '../utils/toasty-notify'
-import isErrorWithMessage from '../utils/is-error-with-message'
+import notify from '../../utils/toasty-notify'
+import isErrorWithMessage from '../../utils/is-error-with-message'
 
-import Status from '../shared/status'
+import Status from '../../shared/status'
 
-import MainLayout from '../layouts/MainLayout'
+import MainLayout from '../../layouts/MainLayout'
 
-import Loading from '../components/Loading'
-import Images from '../components/Images'
-
-import { SERVER_URL } from '../shared/constants'
+import Loading from '../../components/Loading'
+import Images from './Images'
+import { StyledAddPostHeader, StyledAddPost } from './style'
 
 import {
 	useCreatePostMutation,
 	useLazyGetPostQuery,
 	useUpdatePostMutation,
 	useUploadImageMutation,
-} from '../redux/services/post/endpoints'
-import type { CreatePostBody } from '../redux/services/post/types'
+} from '../../redux/services/post/endpoints'
+import type { CreatePostBody } from '../../redux/services/post/types'
 
 import 'easymde/dist/easymde.min.css'
-import classes from '../assets/styles/pages/AddPost/AddPost.module.scss'
 
 const AddPost: React.FC = () => {
 	const { id } = useParams()
@@ -165,31 +163,21 @@ const AddPost: React.FC = () => {
 		[],
 	)
 
-	const backgroundImageStyles = {
-		width: '100%',
-		height: '200px',
-		backgroundImage: backgroundImageUrl ? `url(${SERVER_URL + backgroundImageUrl})` : 'none',
-		backgroundRepeat: 'no-repeat',
-		backgroundPosition: 'center',
-		backgroundSize: 'cover',
-		// userSelect: 'none',
-	}
-
 	if (authStatus === Status.LOADING) return <Loading />
 
 	if (!window.localStorage.getItem('token') || !isAuth) return <Navigate to={`/posts/${id}`} />
 
 	return (
 		<MainLayout title={isEditing ? 'Редактирование' : 'Создание'}>
-			<div style={backgroundImageStyles}></div>
-			<div className={classes.addPostPage}>
+			<StyledAddPostHeader $backgroundImageUrl={backgroundImageUrl}></StyledAddPostHeader>
+			<StyledAddPost>
 				<input
 					ref={inputFileBackgroundImage}
 					type="file"
 					onChange={(e) => handleUploadImage(e, setImageBackgroundUrl)}
 					hidden
 				/>
-				<div className={classes.actionButtonsImg}>
+				<div className="buttons__backgroundImage--actions">
 					<Button
 						onClick={() => inputFileBackgroundImage.current?.click()}
 						variant="outlined"
@@ -201,14 +189,12 @@ const AddPost: React.FC = () => {
 						<Button variant="contained" color="error" onClick={handleRemoveHeaderImage}>
 							Удалить
 						</Button>
-					) : (
-						''
-					)}
+					) : null}
 				</div>
 				<br />
 				<br />
 				<TextField
-					classes={{ root: classes.title }}
+					classes={{ root: 'title' }}
 					variant="standard"
 					placeholder="Заголовок поста..."
 					value={title}
@@ -216,13 +202,13 @@ const AddPost: React.FC = () => {
 					fullWidth
 				/>
 				<SimpleMDE
-					className={classes.editor}
+					className="MDE-editor"
 					value={text}
 					onChange={handleChangeMDE}
 					options={options as EasyMDE.Options}
 				/>
-				<h2> Добавить изображения </h2>
-				<div className={classes.blockAddImages}>
+				<h1> Добавить изображения </h1>
+				<div className="add-images--actions">
 					<input
 						ref={inputFileImage}
 						type="file"
@@ -230,17 +216,17 @@ const AddPost: React.FC = () => {
 						hidden
 					/>
 					<div
-						className={classes.addImageBlock}
-						title="Добавить изображение"
+						className="add-images--actions--upload-image"
+						title="Загрузить изображение"
 						onClick={() => inputFileImage.current?.click()}
 					>
 						<IconButton>
 							<AddIcon sx={{ fontSize: '120px' }} />
 						</IconButton>
 					</div>
-					<Images images={images} deleteImage={handleRemoveImage} isEditing />
+					<Images images={images} deleteImage={handleRemoveImage} />
 				</div>
-				<div className={classes.buttons}>
+				<div className="buttons__post--actions">
 					<Button onClick={onSubmit} size="large" variant="contained">
 						{isEditing ? 'Сохранить' : 'Опубликовать'}
 					</Button>
@@ -250,7 +236,7 @@ const AddPost: React.FC = () => {
 						</Button>
 					</Link>
 				</div>
-			</div>
+			</StyledAddPost>
 		</MainLayout>
 	)
 }

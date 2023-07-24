@@ -12,10 +12,10 @@ import Loading from '../Loading'
 
 import Home from '../../pages/Home'
 import FullPost from '../../pages/FullPost'
-import GlobalStyle from '../../assets/styles/global.style'
+
+import GlobalStyles from '../GlobalStyles'
 
 // Lazy components
-
 const Login = React.lazy(() => import(/* webpackChunkName: "Login" */ '../../pages/Login'))
 
 const AddPost = React.lazy(() => import(/* webpackChunkName: "AddPost" */ '../../pages/AddPost'))
@@ -53,7 +53,7 @@ const Routes: React.FC = () => {
 
 	return (
 		<StyledApp>
-			<GlobalStyle />
+			<GlobalStyles />
 			<React.Suspense fallback={<Loading />}>
 				<RouterProvider router={router} />
 			</React.Suspense>

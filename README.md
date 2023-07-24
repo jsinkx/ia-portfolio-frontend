@@ -36,12 +36,11 @@ npm install
 -   react-markdown
 -   react-simplemde-editor
 -   styled-components
+-   MUI
 -   Axios
 -   Redux Toolkit Query
--   SASS
--   MUI
 
 ## Configuration
 
-Backend address is located in `./src/shared/config.ts` as `address` htaccess config file is located in
+Backend address is located in `./src/shared/constants.ts` as `SERVER_URL` htaccess config file is located in
 `./public/.htaccess`

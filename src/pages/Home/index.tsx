@@ -6,17 +6,17 @@ import useAppSelector from '../../hooks/useAppSelector'
 import { selectAuthData } from '../../redux/slices/auth/selectors'
 import { selectPosts } from '../../redux/slices/post/selectors'
 import { fetchPosts } from '../../redux/slices/post/slice'
+import type { Post as PostT } from '../../redux/slices/post/types'
+
+import isUser from '../../utils/is-user'
 
 import MainLayout from '../../layouts/MainLayout'
 
 import Intro from './Intro'
-// import AboutMe from './AboutMe'
 import Contacts from './Contacts'
 import Socials from './Socials'
 import Post from '../../components/Post'
-
-import classes from '../../assets/styles/pages/Home/Home.module.scss'
-import isUser from '../../utils/is-user'
+import { StyledHome, StyledHomeBackgroundWrap, StyledHomeProfileTitle } from './style'
 
 const Home: React.FC = () => {
 	const dispatch = useAppDispatch()
@@ -32,21 +32,19 @@ const Home: React.FC = () => {
 
 	return (
 		<MainLayout>
-			<div className={classes.backgroundWrap}>
-				<div className={classes.backgroundFirst}></div>
-				<div className={classes.backgroundSecond}></div>
-			</div>
-			<div className={classes.contentSection}>
-				<div className={classes.businessItems}>
+			<StyledHomeBackgroundWrap>
+				<div className="background--first" />
+				<div className="background--second" />
+			</StyledHomeBackgroundWrap>
+			<StyledHome>
+				<div className="profile__contacts">
 					<Intro />
-					{/* <AboutMe /> */}
 					<Contacts />
 					<Socials />
 				</div>
-
-				<div className={classes.workSection}>
-					<p className={classes.pTitle}> МОИ ДОСТИЖЕНИЯ </p>
-					{(isPostsLoading ? [...Array(4)] : items).map((post, index) =>
+				<div className="profile__posts">
+					<StyledHomeProfileTitle>МОИ ДОСТИЖЕНИЯ</StyledHomeProfileTitle>
+					{(isPostsLoading ? [...Array(4)] : items).map((post: PostT, index) =>
 						isPostsLoading ? (
 							<Post key={index} isLoading={true} />
 						) : (
@@ -59,7 +57,7 @@ const Home: React.FC = () => {
 						),
 					)}
 				</div>
-			</div>
+			</StyledHome>
 		</MainLayout>
 	)
 }

@@ -1,14 +1,14 @@
 import React from 'react'
 
-import classes from '../../assets/styles/pages/Home/Intro.module.scss'
+import { StyledHomeIntro, StyledHomeProfileTitle } from './style'
 
 const Intro: React.FC = () => {
 	return (
-		<section className={classes.introSection}>
-			<p className={classes.pTitle}> ВСТУПЛЕНИЕ </p>
-			<h2 className={classes.h2Greetings}> Аленичев Илья Владимирович </h2>
-			<h3 className={classes.h3JobPosition}> Member of Rosatom Junior Council </h3>
-		</section>
+		<StyledHomeIntro>
+			<StyledHomeProfileTitle> ВСТУПЛЕНИЕ </StyledHomeProfileTitle>
+			<h1 className="intro__text-header__name"> Аленичев Илья Владимирович </h1>
+			<h2 className="intro__text-header__role"> Member of Rosatom Junior Council </h2>
+		</StyledHomeIntro>
 	)
 }
 
