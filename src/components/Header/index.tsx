@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { Button, IconButton } from '@mui/material'
 import AddIcon from '@mui/icons-material/AddCircleOutline'
 
+import Paths from '../../shared/paths'
+
 import useAppSelector from '../../hooks/useAppSelector'
 import useAppDispatch from '../../hooks/useAppDispatch'
 
@@ -52,7 +54,7 @@ const Header = () => {
 			)}
 			<StyledHeader>
 				<nav>
-					<Link to="/">
+					<Link to={Paths.home}>
 						<div className="header__nav__logo">
 							<h3>и</h3>
 						</div>
@@ -66,7 +68,7 @@ const Header = () => {
 						{isAuth ? (
 							<>
 								<li>
-									<Link to="/add-post">
+									<Link to={Paths.addPost}>
 										<IconButton color="primary">
 											<AddIcon sx={{ fontSize: '40px' }} />
 										</IconButton>

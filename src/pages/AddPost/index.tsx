@@ -15,6 +15,7 @@ import notify from '../../utils/toasty-notify'
 import isErrorWithMessage from '../../utils/is-error-with-message'
 
 import Status from '../../shared/status'
+import Paths from '../../shared/paths'
 
 import MainLayout from '../../layouts/MainLayout'
 
@@ -110,18 +111,17 @@ const AddPost: React.FC = () => {
 			if (isEditing && id) {
 				await updatePost({ id, fields }).unwrap()
 
-				navigate(`/posts/${id}`)
+				navigate(Paths.post.dynamic(id))
 			} else {
 				const data = await createPost(fields).unwrap()
 
-				navigate(`/posts/${data._id}`)
+				navigate(Paths.post.dynamic(data._id))
 			}
 		} catch (err) {
 			const errMessage = (isErrorWithMessage(err) && err?.data[0]?.msg) || 'Ошибка при создании поста!'
 
 			notify(errMessage, false)
 
-			// eslint-disable-next-line no-console
 			console.warn(err)
 		}
 	}
@@ -143,7 +143,7 @@ const AddPost: React.FC = () => {
 
 					notify(errMessage, false)
 
-					navigate('/')
+					navigate(Paths.home)
 				})
 	}, [getPost, id, navigate])
 
@@ -165,7 +165,8 @@ const AddPost: React.FC = () => {
 
 	if (authStatus === Status.LOADING) return <Loading />
 
-	if (!window.localStorage.getItem('token') || !isAuth) return <Navigate to={`/posts/${id}`} />
+	if (!window.localStorage.getItem('token') || !isAuth)
+		return <Navigate to={Paths.post.dynamic(id || '')} />
 
 	return (
 		<MainLayout title={isEditing ? 'Редактирование' : 'Создание'}>
@@ -230,7 +231,7 @@ const AddPost: React.FC = () => {
 					<Button onClick={onSubmit} size="large" variant="contained">
 						{isEditing ? 'Сохранить' : 'Опубликовать'}
 					</Button>
-					<Link to="/">
+					<Link to={Paths.home}>
 						<Button size="large" color="error">
 							Отмена
 						</Button>

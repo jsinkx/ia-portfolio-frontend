@@ -5,6 +5,7 @@ import { FieldValues, useForm } from 'react-hook-form'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 
+import Paths from '../../shared/paths'
 import notify from '../../utils/toasty-notify'
 
 import useAppDispatch from '../../hooks/useAppDispatch'
@@ -50,7 +51,7 @@ const Login: React.FC = () => {
 		}
 	}
 
-	if (isAuth) return <Navigate to="/" />
+	if (isAuth) return <Navigate to={Paths.home} />
 
 	return (
 		<MainLayout title="Авторизация">

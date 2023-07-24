@@ -30,11 +30,11 @@ const router = createBrowserRouter([
 		element: <Login />,
 	},
 	{
-		path: Paths.post,
+		path: Paths.post.static,
 		element: <FullPost />,
 	},
 	{
-		path: Paths.editPost,
+		path: Paths.editPost.static,
 		element: <AddPost />,
 	},
 	{

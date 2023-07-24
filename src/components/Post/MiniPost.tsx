@@ -12,6 +12,7 @@ import { fetchRemovePost } from '../../redux/slices/post/slice'
 
 import ConfirmationWindow from '../ConfirmationWindow'
 import { StyledMiniPost } from './style'
+import Paths from '../../shared/paths'
 
 type MiniPostProps = {
 	title?: string | undefined
@@ -58,7 +59,7 @@ const MiniPost: React.FC<MiniPostProps> = ({ title, id, isBurger, isEditable, is
 					Вы действительно хотите удалить пост <b> {title} </b> ?
 				</ConfirmationWindow>
 			)}
-			<StyledMiniPost to={`/posts/${id}`}>
+			<StyledMiniPost to={Paths.post.dynamic(id || '')}>
 				<div className={isBurger ? 'post--burger' : 'post'}>
 					{isEditable ? (
 						<div className="buttons--edit">

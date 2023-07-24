@@ -2,10 +2,10 @@ import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 
-import { Post as PostT } from '../../redux/slices/post/types'
-
+import type { Post as PostT } from '../../redux/slices/post/types'
 import { useLazyGetPostQuery } from '../../redux/services/post/endpoints'
 
+import Paths from '../../shared/paths'
 import isErrorWithMessage from '../../utils/is-error-with-message'
 import notify from '../../utils/toasty-notify'
 
@@ -38,7 +38,7 @@ const FullPost: React.FC = () => {
 
 					notify(errMessage, false)
 
-					navigate('/')
+					navigate(Paths.home)
 				})
 	}, [getPost, id, navigate])
 
