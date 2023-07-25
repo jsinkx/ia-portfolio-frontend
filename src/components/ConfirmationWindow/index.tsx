@@ -1,7 +1,9 @@
 import React from 'react'
+
+import { Button, Typography } from '@mui/material'
+
 import StyledConfirmationWindow from './style'
 import Modal from '../Modal'
-import { Button, Typography } from '@mui/material'
 
 type ConfirmationWindowProps = {
 	title?: string

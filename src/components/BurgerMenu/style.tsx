@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-const StyledBurgerMenu = styled.div<{ $isOpen: boolean }>`
-	display: ${({ $isOpen }) => ($isOpen ? 'inline' : 'none')};
+const StyledBurgerMenu = styled.div`
+	display: 'inline';
 	position: fixed;
 	top: 0;
 	bottom: 0;

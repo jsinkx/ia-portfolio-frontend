@@ -5,7 +5,7 @@ import Paths from '../../shared/paths'
 
 import useAppDispatch from '../../hooks/useAppDispatch'
 
-import { fetchAuthMe } from '../../redux/slices/auth/slice'
+import { fetchAuthMe, logout } from '../../redux/slices/auth/slice'
 
 import StyledApp from './style'
 import Loading from '../Loading'
@@ -21,6 +21,10 @@ const Login = React.lazy(() => import(/* webpackChunkName: "Login" */ '../../pag
 const AddPost = React.lazy(() => import(/* webpackChunkName: "AddPost" */ '../../pages/AddPost'))
 
 const router = createBrowserRouter([
+	{
+		path: '*',
+		element: <Home />,
+	},
 	{
 		path: Paths.home,
 		element: <Home />,
@@ -48,7 +52,7 @@ const Routes: React.FC = () => {
 
 	// Try auth by token
 	React.useEffect(() => {
-		window.localStorage.getItem('token') && dispatch(fetchAuthMe())
+		window.localStorage.getItem('token') ? dispatch(fetchAuthMe()) : dispatch(logout())
 	}, [dispatch])
 
 	return (

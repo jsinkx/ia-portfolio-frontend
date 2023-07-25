@@ -19,12 +19,14 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({ children }) => {
 					<BurgerIcon sx={{ fontSize: 40 }} />
 				</IconButton>
 			</div>
-			<StyledBurgerMenu $isOpen={isOpen} onClick={() => setIsOpen((p) => !p)}>
-				<p> Закрыть </p>
-				{children}
-			</StyledBurgerMenu>
+			{isOpen && (
+				<StyledBurgerMenu onClick={() => setIsOpen((p) => !p)}>
+					<p> Закрыть </p>
+					{children}
+				</StyledBurgerMenu>
+			)}
 		</>
 	)
 }
 
-export default BurgerMenu
+export default React.memo(BurgerMenu)

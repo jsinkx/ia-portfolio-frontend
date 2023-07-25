@@ -25,7 +25,7 @@ const BigPost: React.FC<BigPostProps> = ({ title, images, backgroundImageUrl, ch
 					{images?.length ? (
 						<div className="post__images">
 							{images.map((imageUrl) => (
-								<img key={imageUrl} src={`${SERVER_URL + imageUrl}`} alt={imageUrl} />
+								<img key={imageUrl} src={SERVER_URL + imageUrl} alt={imageUrl} />
 							))}
 						</div>
 					) : null}
