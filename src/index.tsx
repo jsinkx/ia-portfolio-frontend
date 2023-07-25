@@ -9,8 +9,6 @@ import CssBaseline from '@mui/material/CssBaseline'
 import store from './redux/store'
 import Routes from './components/Routes'
 
-require('normalize-css')
-
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
