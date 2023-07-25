@@ -51,7 +51,15 @@ const MiniPost: React.FC<MiniPostProps> = ({ title, id, isBurger, isEditable, is
 	}
 
 	return isLoading ? (
-		<Skeleton sx={{ width: '80%', height: 75, float: 'right', marginTop: 3 }} />
+		<Skeleton
+			sx={{
+				width: '80%',
+				height: 75,
+				float: isBurger ? 'none' : 'right',
+				marginTop: 3,
+				marginInline: 'auto',
+			}}
+		/>
 	) : (
 		<>
 			{isOpen && (

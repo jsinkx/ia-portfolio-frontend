@@ -5,6 +5,7 @@ const GlobalStyleTags = createGlobalStyle`
 html {
 	height: 100%;
 	background-color: white;
+	font-display: swap;
 
 	body {
 		margin: 0;
@@ -31,6 +32,8 @@ html {
 		}
 	}
 }
+
+
 
 `
 
